@@ -1,0 +1,7 @@
+1. Added Sql functions in "modules" 
+
+2. Used Flask-Session to store user authentication 
+	store session["info"] = {} of user 
+		  session["user"] = str name of user
+
+3. In pages, pass in session["info"] for ease of control 

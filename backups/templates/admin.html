@@ -1,0 +1,6 @@
+{% extends "base.html" -%}
+{% block content -%}
+	{% if user=="manager" %}
+		Welcome Manager, No one else can see this
+	{% endif %}
+{%- endblock content %}

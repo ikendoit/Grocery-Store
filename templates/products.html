@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<p style="text-align:center"> Welcome {{user.Name}} </p>
+
+<h1> {{message}} </h1>
+
+<form action="/addproduct" method="POST" style="float:left; width:32%">
+    <h2> Add new Product </h2>
+	<p>SKU: <input type="text" name="sku" /></p>
+	<p>Name: <input type="text" name="name" /></p>
+	<p>Price: <input type="text" name="price" /></p>
+	<p>Amount: <input type="text" name="amount" /></p>
+	<p>section: <input type="text" name="section" /></p>
+	<p>weight (g/item): <input type="text" name="weight" /></p>
+	<input type="submit" value="Add new Value" />
+</form>
+
+{% if user.Salary %}
+
+<form action="/quanproduct" method="POST" style="float:right; width:32%">
+    <h2> Quantify Product by SKU</h2>
+	<p>SKU: <input type="text" name="sku" /></p>
+	<p>Amount: <input type="text" name="amount" /></p>
+	<input type="submit" value="quantify" />
+</form>
+
+<form action="/modproduct" method="POST" style="float:right; width:32%">
+    <h2> Modify Product by SKU</h2>
+	<p>SKU: <input type="text" name="sku" /></p>
+	<p>Name: <input type="text" name="name" /></p>
+	<p>Price: <input type="text" name="price" /></p>
+	<p>Amount: <input type="text" name="amount" /></p>
+	<p>section: <input type="text" name="section" /></p>
+	<p>weight (g/item): <input type="text" name="weight" /></p>
+	<input type="submit" value="Modify" />
+</form>
+
+
+{% endif %}
+
+<div style="margin-bottom:20px; clear:both"> </div>
+
+<h1 style="text-align:center; "> Check Out Our Products </h1>
+
+<table cellspacing="20px" style="text-align:center">
+	<thead>
+		<tr>
+			<td>SKU</td>
+			<td>Name</td>
+			<td>Amount</td>
+			<td>section</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% for product in products %}
+			<tr onclick="analize({{product.SKU}});">
+				<td>{{product.SKU}}</td>
+				<td>{{product.Product_Name}}</td>  
+				<td>{{product.Amount}}</td>
+				<td>{{product.Section_Num}}</td>
+				{% if user.Salary%}
+					<td><button> Modify </button></td>
+					<td>
+						<form method="POST" action="/delproduct">
+							<input type="text" name="sku" value={{product.SKU}} style="display:none"/>
+							<input type="submit" value="delete"/> 
+						</form>
+					</td>
+				{% endif %}
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+<script> 
+	function analize(sku){
+		fetch("http://35.182.249.219:5000/api/products/"+sku)
+			.then((value) => value.json())
+			.then((valueJSON)=> {
+                let data = valueJSON[0];
+				let output = "Name: "+data["Product_Name"] +"\n" +
+                            "Price: "+data["Price"]+"$\n"+
+                            "Section: "+data["Section_Num"]+ "\n"+
+                            "Weight: "+data["Weight"]+" grams";
+				confirm(output);
+			});
+	}
+</script>
+
+{% endblock %}

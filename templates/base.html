@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+	 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/website.css')}}" />
+		<style> 
+			a:hover {
+				color : red ; 
+				text-decoration: none;
+			}
+
+			h1 {
+				color : red ;
+			}
+		</style>
+		<title> Simple Warehouse</title>
+
+		<div style="position:fixed; top:0;" >
+				{% if not user %}
+			<script type="text/javascript" defer>
+                if (document.location.href.indexOf("login")<0)
+                    document.location.href="/login"; 
+            </script>
+				{% else %}
+			<span> hello {{user.Name}}</span>
+                {% endif %}
+		</div>
+	</head>
+
+	<body>
+		<header>
+			<h1>Simple Ware House</h1>
+		</header>
+		<ul class="menu-header" >
+			<li class="nav-item">
+				<a  href= {{ url_for('index') }} >Home </a> 
+			</li>
+			<li class="nav-item">
+				<a  href= {{ url_for('profile') }} >My Profile</a> 
+			</li>
+            <li class="nav-item">
+                <a href="#" onmouseover="open_manage();"> Manage Business (v)</a>
+            </li>
+            <div id="menu-main" style="display:none">
+				<li class="nav-item">
+					<a href= {{ url_for('products') }} >Product</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" onmouseover="open_sub();">Vendors & Producers (v)</a>
+				</li>
+				<div id="menu-sub-1" style="display:none">
+					<li class="nav-item">
+						<a href= {{ url_for('vendors') }} >Vendors</a>
+					</li>
+					<li class="nav-item">
+						<a href= {{ url_for('producers') }} >Producers</a>
+					</li>
+				</div>
+                {% if user.Salary %}
+                <li class="nav-item">
+                    <a href= {{ url_for('admin') }} >Admin</a>
+                </li>
+                {% endif %}
+            </div>
+
+			<li class="nav-item">
+				<a href= {{ url_for('contact') }} >Contact</a>
+			</li>
+			<li class="nav-item">
+				<a href= {{ url_for('about') }} >About</a>
+			</li>
+			<li class="nav-item">
+				<form method="POST" action="/logout" id="form-logout"> 
+					<input type="submit" name="logout" value="log out" style="border:none; background-color:#003366; margin-left:-13px;" />
+				</form>
+			</li>
+		</ul>
+
+		<div class="main-content">
+			{% block body %} {% endblock %}
+		</div>
+		<footer>
+            <script type="text/javascript"> 
+ 
+                function open_manage(){
+                    let type = document.getElementById("menu-main").style.display;
+                    if (type == "none"){
+                        document.getElementById("menu-main").style.display="block";
+                    } else {
+                        document.getElementById("menu-main").style.display="none";
+                    }
+                }
+
+                function open_sub(){
+                    let type = document.getElementById("menu-sub-1").style.display;
+                    if (type == "none"){
+                        document.getElementById("menu-sub-1").style.display="block";
+                    } else {
+                        document.getElementById("menu-sub-1").style.display="none";
+                    }
+                }               
+
+				function test_api(){
+					fetch("/api/Products")
+						.post({"checking":123});;
+				}
+            </script>
+		</footer>
+	</body>
+
+</html>

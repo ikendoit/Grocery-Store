@@ -1,0 +1,99 @@
+{% extends "base.html" -%}
+{% block body %}
+	
+<p style="text-align:center"> Welcome {{user.Name}} </p>
+
+<h1> {{message}} </h1>
+
+
+<form action="/addproducers" method="POST" style="float:left; width:47%">
+    <h3> Add New Producer </h3>
+    <p> Name: <input type="text" name="name" /> </p>
+    <p> Email: <input type="text" name="email" /> </p>
+    <p> Phone: <input type="text" name="phone" /> </p>
+    <p> Address: <input type="text" name="address" /> </p>
+    <p> Owner Name: <input type="text" name="owner_name" /> </p>
+    <input type="submit" value="Add New" />
+</form>
+
+{% if user.Salary %}
+
+<form action="/modproducers" method="POST" style="float:right; width:47%">
+    <h3> Modify Producer by ID</h3>
+    <p> ID: <input type="text" name="id" /> </p>
+    <p> Name: <input type="text" name="name" /> </p>
+    <p> Email: <input type="text" name="email" /> </p>
+    <p> Phone: <input type="text" name="phone" /> </p>
+    <p> Address: <input type="text" name="address" /> </p>
+    <p> Owner Name: <input type="text" name="owner_name" /> </p>
+    <input type="submit" value="Add New" />
+</form>
+
+{% endif %}
+
+<div style="margin-bottom:20px; clear:both"> </div>
+
+<h2> List of Producers </h2>
+<table cellspacing="20px" style="text-align:center">
+	<thead>
+		<tr>
+			<td>ID</td>
+			<td>Name</td>
+			<td>EMail</td>
+			<td>Owner</td>
+			<td>Phone</td>
+			<td>Address</td>
+			<td>Total Avenue</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% for producer in list_party %}
+			<tr onclick="analize({{producer.P_ID}});">
+				<td>{{producer.P_ID}}</td>
+				<td>{{producer.P_Name}}</td>  
+				<td>{{producer.Email}}</td>
+				<td>{{producer.Owner_Name}}</td>
+				<td>{{producer.PhoneNum}}</td>
+				<td>{{producer.Address}}</td>
+				{% for ministat in stat %}
+					{% if ministat.P_ID == producer.P_ID %}
+						<td> {{ministat.sum}}</td>
+					{% endif %}
+				{% endfor %}
+				{% if user.Salary%}
+					<td><button> Modify </button></td>
+					<td>
+						<form method="POST" action="/delproducer">
+							<input type="text" name="p_id" value={{producer.P_ID}} style="display:none"/>
+							<input type="submit" value="delete"/> 
+						</form>
+					</td>
+				{% endif %}
+			</tr>
+            {% for import in list_order %}
+                {% if import.P_ID == producer.P_ID %}
+                <tr> 
+                    <td colspan=6>
+                        SKU:   {{import.SKU}} 
+                        Amount:   {{import.Amount}}
+                        Total Price:   {{import.Total_Price}}$
+                        Date:   {{import.Date_info}}
+                    </td>
+                </tr> 
+                {% endif %}
+            {% endfor %}
+		{% endfor %}
+	</tbody>
+</table>
+	
+<script type="text/javascript">
+	function analize(p_id){
+		fetch("http://35.182.249.219:5000/api/producers/"+p_id)
+			.then((value) => value.json())
+			.then((valueJSON)=> {
+				let output = valueJSON[0]["COUNT(*)"] +" Import Order Was Made with this Producer";
+				confirm(output);
+			});
+	}
+</script>
+{% endblock body %}

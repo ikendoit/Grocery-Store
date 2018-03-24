@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<p style="text-align:center"> Welcome {{user}} </p>
+
+<h1 style="text-align:center"> Check Out Our Products </h1>
+
+{% for product in products %}
+	<div class="itemBox">
+		<p> {{product.name}} </p>
+		<p> {{product.price}} </p>
+		{%if not user == None %}
+		<button> purchase </button>
+		{% endif %}
+		{% if user == "manager"%}
+		<button> Modify </button>
+		{% endif %}
+	</div>
+{% endfor %}
+
+{% endblock %}

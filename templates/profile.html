@@ -1,0 +1,16 @@
+{% extends "base.html" -%}
+{% block body %}
+
+	<h1 style="text-align:center"> User Page </h1>
+	<p style="text-align:center"> Welcome {{user.Name}} </p>
+
+    <p> Name: {{user.Name}}</p>
+    <p> ID: {{user.Staff_ID}}</p>
+    <p> Address: {{user.Address}}</p>
+    <p> Phone : {{user.PhoneNum}}</p>
+    <p> Date Start: {{user.Date_info_Start}}</p>
+    <p> Is Manager : {{user.Salary != None }} </p>
+    
+
+{% endblock body %}
+

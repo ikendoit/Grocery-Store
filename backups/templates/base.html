@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/website.css')}}">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <style> 
+    a, a:hover {
+		color : red ; 
+		text-decoration: none;
+	}
+
+	h1 {
+		color : red ;
+	}
+  </style>
+  <title> Simple Grocery</title>
+</head>
+
+<body>
+  <div class="container-fluid headerLine">
+
+      {% if not user %}
+    <span> Hello Guest, login register </span>
+      {% elif user!= "manager" and user != "staff" %}
+    <span> hello {{user}}, Our customer</span>
+      {% elif user=="manager" %}
+    <span>hello manager</span>
+      {% elif user=="staff" %}
+    <span> hello staff</span> {% endif %}
+    <span>check out our products</span>
+  </div>
+  <div class="headArea">
+    <div class="container-fluid header row">
+      <div class="offset-2 col-4">
+        <h1>Simple Grocery</h1>
+      </div>
+      <div class="offset-2 col-4" style="margin-top: 20px;">
+        <span>Username: </span>
+        <input style="display:inline-block; margin-right: 20px;" />
+        <span>Password: </span>
+        <input />
+      </div>
+    </div>
+    <div class="offset-1" style="margin-left:13.5%; display: flex; justify-content:left;">
+      <div style="width : 50%;">
+        <ul class="nav nav-fill">
+          <li class="nav-item">
+            <a  href= {{ url_for('index') }} >Home </a> 
+          </li>
+          <li class="nav-item">
+            <a href= {{ url_for('products') }} >Product</a>
+          </li>
+          <li class="nav-item">
+            <a href= {{ url_for('index') }} >Contact</a>
+          </li>
+          <li class="nav-item">
+            About
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" style="height: 1000px; width: 100%; background-color: #f6f6f6">
+    {% block body %} {% endblock %}
+  </div>
+    <div class="footNotes">
+
+    </div>
+</body>
+
+</html>
