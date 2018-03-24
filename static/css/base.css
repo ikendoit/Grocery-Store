@@ -90,7 +90,7 @@
 
     }
 
-	h1 {
+	.header h1 {
 	    color : white;
 	    padding: 15px;
 	}
@@ -103,6 +103,7 @@
     .header {
         padding: 0;
         margin:0;
+		width:17%;
     }
 
     #form-logout input:hover{

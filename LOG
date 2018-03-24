@@ -5,3 +5,7 @@
 		  session["user"] = str name of user
 
 3. In pages, pass in session["info"] for ease of control 
+
+4. Added sweet alert 2 for alert form, makes page cleaner
+
+5. Created restAPI to return result of query in json form for quick lookup

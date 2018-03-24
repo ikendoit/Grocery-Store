@@ -2,38 +2,29 @@
 {% block body %}
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/producers.css')}}" />
 
-<p style="text-align:center"> Welcome {{user.Name}} </p>
+
+<h1 style="text-align:center"> Vendors Manager </h1>
 
 <h1> {{message}} </h1>
 
-<form action="/addvendors" method="POST" style="float:left; width:47%">
-    <h3> Add New Vendor </h3>
-    <span> Name: </span><input type="text" name="name"><br>
-    <span> Email: </span><input type="text" name="email" /><br>
-	<span> Phone: </span><input type="text" name="phone" /><br>
-	<span> Address: </span><input type="text" name="address" /><br>
-	<span> Owner Name: </span><input type="text" name="owner_name" /><br>
-    <input type="submit" value="Add New" />
-</form>
+<script> 
+    function addNew(){
+        swal('<form action="/addvendors" method="POST"><h3> Add New Vendor </h3><p> Name: <input type="text" name="name" /> </p><p> Email: <input type="text" name="email" /> </p><p> Phone: <input type="text" name="phone" /> </p><p> Address: <input type="text" name="address" /> </p><p> Owner Name: <input type="text" name="owner_name" /> </p><input type="submit" value="Add New" /></form>');
+    }
 
-{% if user.Salary %}
-
-<form action="/modvendors" method="POST" style="float:right; width:47%">
-    <h3> Modify Vendor by ID</h3>
-    <span> ID: </span><input type="text" name="id" /><br>
-	<span> Name: </span><input type="text" name="name" /><br>
-	<span> Email: </span><input type="text" name="email" /><br>
-	<span> Phone: </span><input type="text" name="phone" /><br>
-	<span> Address: </span><input type="text" name="address" /><br>
-	<span> Owner Name: </span><input type="text" name="owner_name" /><br>
-    <input type="submit" value="Add New" />
-</form>
-
-<div style="margin-bottom:20px; clear:both"> </div>
-
-{% endif %}
-
+    function modify(id){
+        swal('<form action="/modvendors" method="POST" ><h3> Modify Vendor by ID</h3><p> ID: <input type="text" name="id" value="'+id+'"/> </p><p> Name: <input type="text" name="name" /> </p><p> Email: <input type="text" name="email" /> </p><p> Phone: <input type="text" name="phone" /> </p><p> Address: <input type="text" name="address" /> </p><p> Owner Name: <input type="text" name="owner_name" /> </p><input type="submit" value="Add New" /></form> ');
+    }
+</script>
 <h2> List of Vendor </h2>
+
+<p>
+	<a onclick="addNew()" style="margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Add New Vendor </a>
+	{% if user.Salary %}
+	<a onclick="modify(0)" style="margin-left:20%;border: 2px solid blue; color:purple; padding:10px;"> Modify Vendor </a>
+	{% endif %}
+</p>
+
 <table cellspacing="20px" style="text-align:center">
 	<thead>
 		<tr>
@@ -43,6 +34,7 @@
 			<td>Owner</td>
 			<td>Phone</td>
 			<td>Address</td>
+			<td>Sum Money </td>
 		</tr>
 	</thead>
 	<tbody>
@@ -60,7 +52,7 @@
 					{% endif %}
 				{% endfor %}
 				{% if user.Salary%}
-					<td><button> Modify </button></td>
+					<td><button onclick="modify({{vendor.V_ID}})"> Modify </button></td>
 					<td>
 						<form method="POST" action="/delvendor">
 							<input type="text" name="v_id" value={{vendor.V_ID}} style="display:none"/>

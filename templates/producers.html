@@ -1,39 +1,28 @@
 {% extends "base.html" %}
 {% block body %}
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/producers.css')}}" />
 
-<p style="text-align:center"> Welcome {{user.Name}} </p>
+<h1 style="text-align:center"> Producers Manager </h1>
 
 <h1> {{message}} </h1>
 
-<form action="/addproducers" method="POST" style="float:left; width:47%">
-    <h3> Add New Producer </h3>
-	<span> Name: </span><input type="text" name="name"><br>
-    <span> Email: </span><input type="text" name="email" /><br>
-	<span> Phone: </span><input type="text" name="phone" /><br>
-	<span> Address: </span><input type="text" name="address" /><br>
-	<span> Owner Name: </span><input type="text" name="owner_name" /><br>
-    <input type="submit" value="Add New" />
-</form>
+<script>
 
-{% if user.Salary %}
-
-<form action="/modproducers" method="POST" style="float:right; width:47%">
-    <h3> Modify Producer by ID</h3>
-	<span> ID: </span><input type="text" name="id" /><br>
-	<span> Name: </span><input type="text" name="name" /><br>
-	<span> Email: </span><input type="text" name="email" /><br>
-	<span> Phone: </span><input type="text" name="phone" /><br>
-	<span> Address: </span><input type="text" name="address" /><br>
-	<span> Owner Name: </span><input type="text" name="owner_name" /><br>
-    <input type="submit" value="Add New" />
-</form>
-
-{% endif %}
-
-<div style="margin-bottom:20px; clear:both"> </div>
+	function addNew(){
+		swal(' <form action="/addproducers" method="POST" > <h3> Add New Producer </h3><p> Name: <input type="text" name="name" /> </p> <p> Email: <input type="text" name="email" /> </p><p> Phone: <input type="text" name="phone" /> </p><p> Address: <input type="text" name="address" /> </p><p> Owner Name: <input type="text" name="owner_name" /> </p><input type="submit" value="Add New" style="font-size:20px"/></form> ');
+	}
+	
+	function modify(id){
+		swal('<form action="/modproducers" method="POST"><h3> Modify Producer by ID</h3><p> ID: <input type="text" name="id" value="'+id+'" /> </p><p> Name: <input type="text" name="name" /> </p><p> Email: <input type="text" name="email" /> </p><p> Phone: <input type="text" name="phone" /> </p><p> Address: <input type="text" name="address" /> </p><p> Owner Name: <input type="text" name="owner_name" /> </p><input type="submit" value="Add New" /></form>');
+	}
+</script>
 
 <h2> List of Producers </h2>
+<p>
+	<a onclick="addNew()" style="margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Add New Producer </a>
+	{% if user.Salary %}
+	<a onclick="modify(0)" style="margin-left:20%;border: 2px solid blue; color:purple; padding:10px;"> Modify Producer </a>
+	{% endif %}
+</p>
 <table cellspacing="20px" style="text-align:center">
 	<thead>
 		<tr>
@@ -61,7 +50,7 @@
 					{% endif %}
 				{% endfor %}
 				{% if user.Salary%}
-					<td><button> Modify </button></td>
+					<td><button onclick="modify({{producer.P_ID}})"> Modify </button></td>
 					<td>
 						<form method="POST" action="/delproducer">
 							<input type="text" name="p_id" value={{producer.P_ID}} style="display:none"/>
