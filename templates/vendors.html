@@ -9,12 +9,13 @@
 
 <script> 
     function addNew(){
-        swal('<form action="/addvendors" method="POST"><h3> Add New Vendor </h3><p> Name: <input type="text" name="name" /> </p><p> Email: <input type="text" name="email" /> </p><p> Phone: <input type="text" name="phone" /> </p><p> Address: <input type="text" name="address" /> </p><p> Owner Name: <input type="text" name="owner_name" /> </p><input type="submit" value="Add New" /></form>');
+        swal('<form action="/addvendors" method="POST" ><h3> Add New Vendor </h3><span> Name: </span><input type="text" name="name"><br><span> Email: </span><input type="text" name="email" /><br><span> Phone: </span><input type="text" name="phone" /><br><span> Address: </span><input type="text" name="address" /><br><span> Owner Name: </span><input type="text" name="owner_name" /><br><input type="submit" value="Add New" /></form>');
     }
 
     function modify(id){
-        swal('<form action="/modvendors" method="POST" ><h3> Modify Vendor by ID</h3><p> ID: <input type="text" name="id" value="'+id+'"/> </p><p> Name: <input type="text" name="name" /> </p><p> Email: <input type="text" name="email" /> </p><p> Phone: <input type="text" name="phone" /> </p><p> Address: <input type="text" name="address" /> </p><p> Owner Name: <input type="text" name="owner_name" /> </p><input type="submit" value="Add New" /></form> ');
+        swal('<form action="/modvendors" method="POST" style="float:right; width:47%"><h3> Modify Vendor by ID</h3><span> ID: </span><input type="text" name="id" /><br<span> Name: </span><input type="text" name="name" /><br><span> Email: </span><input type="text" name="email" /><br><span> Phone: </span><input type="text" name="phone" /><br><span> Address: </span><input type="text" name="address" /><br><span> Owner Name: </span><input type="text" name="owner_name" /><br><input type="submit" value="Add New" /></form>');
     }
+
 </script>
 <h2> List of Vendor </h2>
 
