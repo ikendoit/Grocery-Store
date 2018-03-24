@@ -1,16 +1,18 @@
-{% extends "base.html" -%}
+{% extends "base.html" %}
 {% block body %}
-	
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/producers.css')}}" />
+
 <p style="text-align:center"> Welcome {{user.Name}} </p>
 
 <h1> {{message}} </h1>
+
 <form action="/addvendors" method="POST" style="float:left; width:47%">
     <h3> Add New Vendor </h3>
-    <p> Name: <input type="text" name="name" /> </p>
-    <p> Email: <input type="text" name="email" /> </p>
-    <p> Phone: <input type="text" name="phone" /> </p>
-    <p> Address: <input type="text" name="address" /> </p>
-    <p> Owner Name: <input type="text" name="owner_name" /> </p>
+    <span> Name: </span><input type="text" name="name"><br>
+    <span> Email: </span><input type="text" name="email" /><br>
+	<span> Phone: </span><input type="text" name="phone" /><br>
+	<span> Address: </span><input type="text" name="address" /><br>
+	<span> Owner Name: </span><input type="text" name="owner_name" /><br>
     <input type="submit" value="Add New" />
 </form>
 
@@ -18,12 +20,12 @@
 
 <form action="/modvendors" method="POST" style="float:right; width:47%">
     <h3> Modify Vendor by ID</h3>
-    <p> ID: <input type="text" name="id" /> </p>
-    <p> Name: <input type="text" name="name" /> </p>
-    <p> Email: <input type="text" name="email" /> </p>
-    <p> Phone: <input type="text" name="phone" /> </p>
-    <p> Address: <input type="text" name="address" /> </p>
-    <p> Owner Name: <input type="text" name="owner_name" /> </p>
+    <span> ID: </span><input type="text" name="id" /><br>
+	<span> Name: </span><input type="text" name="name" /><br>
+	<span> Email: </span><input type="text" name="email" /><br>
+	<span> Phone: </span><input type="text" name="phone" /><br>
+	<span> Address: </span><input type="text" name="address" /><br>
+	<span> Owner Name: </span><input type="text" name="owner_name" /><br>
     <input type="submit" value="Add New" />
 </form>
 
@@ -37,7 +39,7 @@
 		<tr>
 			<td>ID</td>
 			<td>Name</td>
-			<td>EMail</td>
+			<td>Email</td>
 			<td>Owner</td>
 			<td>Phone</td>
 			<td>Address</td>

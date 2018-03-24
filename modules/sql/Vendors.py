@@ -40,12 +40,12 @@ def query_popular_vendor():
 #   @param: email, name, phone, owner, address
 #   @return: none
 def insert_vendor(email, name, phone, owner, address):
-    utilities.execute("INSERT INTO Vendors value (0,'"+email+"','"+phone+"','"+name+"','"+owner+"','"+address+"')")
+    return utilities.execute("INSERT INTO Vendors value (0,'"+email+"','"+phone+"','"+name+"','"+owner+"','"+address+"')")
 
 
 #insert new order import
 def insert_import(email, name, phone, owner, address):
-    utilities.execute("INSERT INTO Vendors value (0,'"+email+"','"+phone+"','"+name+"','"+owner+"','"+address+"')")
+    return utilities.execute("INSERT INTO Vendors value (0,'"+email+"','"+phone+"','"+name+"','"+owner+"','"+address+"')")
 
 
 # ---------------------------DELETE----------------------------------
@@ -54,4 +54,4 @@ def insert_import(email, name, phone, owner, address):
 #   @param:  id_party
 #   @return: none
 def del_vendor(id_party):
-    utilities.execute("DELETE FROM Vendors where V_ID="+id_party)
+    return utilities.execute("DELETE FROM Vendors where V_ID="+id_party)

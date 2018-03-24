@@ -17,11 +17,11 @@
     a {
       	text-decoration: none;
       	color : black;
-      	font-size: 18px;
+      	font-size: 23px;
     }
 
     a:hover {
-      	color : red;
+      	color : #1e90ff;
       	cursor: pointer;
     }
 
@@ -41,12 +41,16 @@
 
 /* HEADER */
 
-    header {
+    .header {
+        padding: 15px;
+        float:left;
+        height: 100%;
+        background-color:#87ceeb;
     }
 
     .menu-header{
       float:left;
-      width:10%;
+      width:75%;
       font-size:1.5rem;
     }
 
@@ -55,14 +59,14 @@
 	}
 
     .main-content{
-      float:right;
-      width: 75%;
+        float:right;
+        width: 80%;
     }
 
 	#menu-main {
-		background-color:#003366;
+		background-color:#87ceeb;
 		display:none;
-		padding-left: 10px;
+		padding-left: 20px;
 	}
 
     footer {
@@ -75,12 +79,12 @@
 /* BODY */
 
     a:hover {
-		color : red ;
+		color : #1e90ff;
 		text-decoration: none;
 	}
 
 	h1 {
-	    color : red ;
+	    color : white;
 	}
 
 	form input {
@@ -92,7 +96,7 @@
     }
 
     #form-logout input:hover{
-        color:red;
+        color: 1e90ff;
     }
 
 	#form-logout input{
@@ -103,22 +107,21 @@
 
     .menu-header{
       padding-top: 20px;
-      height: 100%;
-      background-color:#003366;
+      background-color:#87ceeb;
     }
 
     .menu-header li {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
 
     #menu-sub-1{
-        padding-left: 30px;
+        padding-left: 40px;
         display: none;
     }
 
     .logout-button{
 
-        background-color:#003366;
+        background-color:#87ceeb;
         border: none;
         cursor: pointer;
     }

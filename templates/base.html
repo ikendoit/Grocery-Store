@@ -12,16 +12,13 @@
                 if (document.location.href.indexOf("login")<0)
                     document.location.href="/login"; 
             </script>
-				{% else %}
-			<span> Hello {{user.Name}}</span>
                 {% endif %}
 		</div>
 	</head>
 
 	<body>
-		<header>
+		<div class="header">
 			<h1>Simple WareHouse</h1>
-		</header>
 		<ul class="menu-header" >
 			<li class="nav-item">
 				<a  href="{{ url_for('index') }}">Home</a>
@@ -62,10 +59,11 @@
 			</li>
 			<li class="nav-item">
 				<form method="POST" action="/logout" id="form-logout">
-					<input class="logout-button" type="submit" name="logout" value="Log Out" style="font-size: 18px;"/>
+					<input class="logout-button" type="submit" name="logout" value="Log Out" style="font-size: 23px;"/>
 				</form>
 			</li>
 		</ul>
+        </div>
 
 		<div class="main-content">
 			{% block body %} {% endblock %}
