@@ -20,8 +20,9 @@
       	font-size: 23px;
     }
 
-    a:hover {
-      	color : #1e90ff;
+    li:hover {
+        width: 100%;
+      	background-color : #00BFFF;
       	cursor: pointer;
     }
 
@@ -42,15 +43,13 @@
 /* HEADER */
 
     .header {
-        padding: 15px;
         float:left;
         height: 100%;
         background-color:#87ceeb;
     }
 
     .menu-header{
-      float:left;
-      width:75%;
+      width:100%;
       font-size:1.5rem;
     }
 
@@ -66,7 +65,14 @@
 	#menu-main {
 		background-color:#87ceeb;
 		display:none;
-		padding-left: 20px;
+
+	}
+
+	#menu-main li{
+
+	    padding-left: 20px;
+	    width: 93.2%;
+
 	}
 
     footer {
@@ -78,13 +84,15 @@
 
 /* BODY */
 
-    a:hover {
-		color : #1e90ff;
-		text-decoration: none;
-	}
+    li span{
+
+        padding-left: 10px;
+
+    }
 
 	h1 {
 	    color : white;
+	    padding: 15px;
 	}
 
 	form input {
@@ -92,7 +100,9 @@
         font-size: 15px;
 	}
 
-    header {
+    .header {
+        padding: 0;
+        margin:0;
     }
 
     #form-logout input:hover{
@@ -107,16 +117,28 @@
 
     .menu-header{
       padding-top: 20px;
+      padding-left: 0;
       background-color:#87ceeb;
     }
 
     .menu-header li {
-        margin-bottom: 20px;
+        padding-bottom: 20px;
+        padding-right: 0;
+        margin-right: 0;
+        margin-left: 0;
+        padding-left: 0;
+        border: none;
     }
 
     #menu-sub-1{
-        padding-left: 40px;
         display: none;
+    }
+
+    #menu-sub-1 li{
+
+        padding-left: 40px;
+        width: 86%;
+
     }
 
     .logout-button{
@@ -124,6 +146,12 @@
         background-color:#87ceeb;
         border: none;
         cursor: pointer;
+    }
+    form input[name="logout"]: hover .logout-button[name="logout"]{
+
+        background-color : #00BFFF;
+        color: #00BFFF;
+
     }
 
 

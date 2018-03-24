@@ -19,50 +19,50 @@
 	<body>
 		<div class="header">
 			<h1>Simple WareHouse</h1>
-		<ul class="menu-header" >
-			<li class="nav-item">
-				<a  href="{{ url_for('index') }}">Home</a>
-			</li>
-			<li class="nav-item">
-				<a  href="{{ url_for('profile') }}">My Profile</a>
-			</li>
-            <li class="nav-item">
-                <a onclick="open_manage();"> Manage Business &#9662</a>
-            </li>
-            <div id="menu-main">
+			<ul class="menu-header" >
 				<li class="nav-item">
-					<a href="{{ url_for('products') }}">&#9656 Product</a>
+					<a  href="{{ url_for('index') }}"><span>Home</span></a>
 				</li>
 				<li class="nav-item">
-					<a onclick="open_sub();">&#9656 Clients &#9662</a>
+					<a  href="{{ url_for('profile') }}"><span>My Profile</span></a>
 				</li>
-				<div id="menu-sub-1">
+				<li class="nav-item" onclick="open_manage();">
+					<a><span>Manage Business &#9662</span></a>
+				</li>
+				<div id="menu-main">
 					<li class="nav-item">
-						<a href="{{ url_for('vendors') }}">&#9657 Vendors</a>
+						<a href="{{ url_for('products') }}">&#9656 Product</a>
 					</li>
+					<li class="nav-item" onclick="open_sub();">
+						<a>&#9656 Clients &#9662</a>
+					</li>
+					<div id="menu-sub-1">
+						<li class="nav-item">
+							<a href="{{ url_for('vendors') }}">&#9657 Vendors</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ url_for('producers') }}">&#9657 Producers</a>
+						</li>
+					</div>
+					{% if user.Salary %}
 					<li class="nav-item">
-						<a href="{{ url_for('producers') }}">&#9657 Producers</a>
+						<a href="{{ url_for('admin') }}">&#9656 Admin</a>
 					</li>
+					{% endif %}
 				</div>
-                {% if user.Salary %}
-                <li class="nav-item">
-                    <a href="{{ url_for('admin') }}">&#9656 Admin</a>
-                </li>
-                {% endif %}
-            </div>
 
-			<li class="nav-item">
-				<a href="{{ url_for('contact') }}">Contact</a>
-			</li>
-			<li class="nav-item">
-				<a href="{{ url_for('about') }}">About</a>
-			</li>
-			<li class="nav-item">
-				<form method="POST" action="/logout" id="form-logout">
-					<input class="logout-button" type="submit" name="logout" value="Log Out" style="font-size: 23px;"/>
-				</form>
-			</li>
-		</ul>
+				<li class="nav-item">
+					<a href="{{ url_for('contact') }}"><span>Contact</span></a>
+				</li>
+				<li class="nav-item">
+					<a href="{{ url_for('about') }}"><span>About</span></a>
+				</li>
+				<li class="nav-item">
+					<form method="POST" action="/logout" id="form-logout" >
+						<input class="logout-button" type="submit" name="logout" value=" Log Out" style="font-size: 23px"/>
+					</form>
+				</li>
+			</ul>
         </div>
 
 		<div class="main-content">
