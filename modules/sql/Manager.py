@@ -10,37 +10,37 @@ class Manager(Staff):
     # delete product
     #   @param: SKU
     #   @return: none
-    def query_delete_product(sku):
+    def query_delete_product(self, sku):
         utilities.execute("DELETE FROM Product where SKU='" + sku + "'")
 
     # Update price of a product
     #    @params : sku, price
     #    @return convert(: none)
-    def query_user_info(sku, price):
+    def query_user_info(self, sku, price):
         utilities.execute("UPDATE Product SET Product_Price='" + price + "' WHERE SKU='" + sku + "'")
 
     # query users info
     #    @params : userid
     #    @return convert(: list of objects)
-    def query_user_info(userid):
+    def query_user_info(self, userid):
         utilities.query("select * from users where User_ID='" + userid + "'")
 
     # query to see all current vendors
     #   @params: none
     #   @return: list of all vendor objects
-    def query_vendor():
+    def query_vendor(self):
         utilities.query("SELECT * FROM Vendors")
 
     # query to see all current producers
     #   @params: none
     #   @return: list of all producers objects
-    def query_producer():
+    def query_producer(self):
         utilities.query("SELECT * FROM Producers")
 
     # query to see highest revenue generating vendor
     #   @params: none
     #   @return: vendor object
-    def query_max_vendor():
+    def query_max_vendor(self):
         utilities.query(
             "SELECT V_ID,MAX(Revenue) FROM (SELECT SUM(Total_Price) AS Revenue, V_ID FROM Order_Exports GROUP BY V_ID)")
         # may need to fix
@@ -48,7 +48,7 @@ class Manager(Staff):
     # query to see highest revenue consuming producer
     #   @params: none
     #   @return: producer object
-    def query_max_producer():
+    def query_max_producer(self):
         utilities.query(
             "SELECT P_ID,MAX(Revenue) FROM (SELECT SUM(Total_Price) AS Revenue, P_ID FROM Order_Imports GROUP BY P_ID)")
         # had a [0]
@@ -56,19 +56,19 @@ class Manager(Staff):
     # query to remove a worker
     #   @Params: workerID
     #   @return: none
-    def query_delete_worker(workerid):
+    def query_delete_worker(self, workerid):
         utilities.execute("DELETE FROM Staff WHERE Staff_ID = " + workerid)
 
     # query to change a worker's hourly wagr :
     #   @Params: workerid, wage
     #   @return: none
-    def query_change_wage(workerid, wage):
+    def query_change_wage(self, workerid, wage):
         utilities.execute("UPDATE Workers SET Hourly_Rate = '" + wage + "' WHERE Staff_ID = " + workerid)
 
     # query to change a manager's salary :
     #   @Params: managerid, salary
     #   @return: none
-    def query_change_salary(managerid, salary):
+    def query_change_salary(self, managerid, salary):
         utilities.execute("UPDATE Managers SET Salary = '" + salary + "' WHERE Staff_ID = " + managerid)
 
 

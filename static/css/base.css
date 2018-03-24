@@ -1,0 +1,127 @@
+/*  GENERAL */
+    /* set html height to trick the menu bar to be at full height */
+    html {
+      	height: 100%;
+      	margin: auto;
+      	padding: 0;
+      	margin: 0;
+    }
+
+    body {
+        font-family: "Arial, Helvetica, sans-serif";
+        height: 100%;
+        padding: 0;
+      	margin: 0;
+    }
+
+    a {
+      	text-decoration: none;
+      	color : black;
+      	font-size: 18px;
+    }
+
+    a:hover {
+      	color : red;
+      	cursor: pointer;
+    }
+
+	ul {
+	}
+
+    li {
+      	list-style-type:none;
+    }
+
+	td {
+		text-align:center;
+	}
+
+/* END GENERAL */
+
+
+/* HEADER */
+
+    header {
+    }
+
+    .menu-header{
+      float:left;
+      width:10%;
+      font-size:1.5rem;
+    }
+
+	.menu-header *{
+		color:white;
+	}
+
+    .main-content{
+      float:right;
+      width: 75%;
+    }
+
+	#menu-main {
+		background-color:#003366;
+		display:none;
+		padding-left: 10px;
+	}
+
+    footer {
+      clear:both;
+    }
+
+/* END HEADER */
+
+
+/* BODY */
+
+    a:hover {
+		color : red ;
+		text-decoration: none;
+	}
+
+	h1 {
+	    color : red ;
+	}
+
+	form input {
+	    font-family: "Arial, Helvetica, sans-serif";
+        font-size: 15px;
+	}
+
+    header {
+    }
+
+    #form-logout input:hover{
+        color:red;
+    }
+
+	#form-logout input{
+		font-size:1.5rem;
+		padding:0 !important;
+		margin-left:0px !important;
+	}
+
+    .menu-header{
+      padding-top: 20px;
+      height: 100%;
+      background-color:#003366;
+    }
+
+    .menu-header li {
+        margin-bottom: 30px;
+    }
+
+    #menu-sub-1{
+        padding-left: 30px;
+        display: none;
+    }
+
+    .logout-button{
+
+        background-color:#003366;
+        border: none;
+        cursor: pointer;
+    }
+
+
+/* END BODY */

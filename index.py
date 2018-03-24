@@ -14,22 +14,26 @@ manager = Manager.Manager()
 
 @app.route("/")
 def index(user=None):
-    return render_template("index.html", user=(session["info"] if "info" in session else None))
+    return render_template("index.html",
+                           user=(session["info"] if "info" in session else None))
 
 
 @app.route("/profile/", methods=["GET"])
 def profile():
-    return render_template("profile.html", user=(session["info"] if "info" in session else None)) 
+    return render_template("profile.html",
+                           user=(session["info"] if "info" in session else None))
 
 
 @app.route("/contact/")
 def contact():
-    return render_template("contact.html", user=(session["info"] if "info" in session else None))
+    return render_template("contact.html",
+                           user=(session["info"] if "info" in session else None))
 
 
 @app.route("/about/")
 def about():
-    return render_template("about.html", user=(session["info"] if "info" in session else None))
+    return render_template("about.html",
+                           user=(session["info"] if "info" in session else None))
 
 
 @app.route("/login/")
@@ -48,10 +52,12 @@ def signup():
 def products():
     try: 
         product_list = Products.query_all_products_info()
-    except Exception as e :    
+    except Exception as e:
         product_list = ["error loading products"]
         print(e)
-    return render_template("products.html", user=(session["info"] if "info" in session else None), products=product_list)
+    return render_template("products.html",
+                           user=(session["info"] if "info" in session else None),
+                           products=product_list)
 
 
 @app.route("/producers/", methods=["GET", "POST"])
@@ -63,7 +69,11 @@ def producers():
     except Exception as e:
         print("error 51")
         print(e)
-    return render_template("producers.html", user=(session["info"] if "info" in session else None), list_party=producers, list_order=imports, stat=stat) 
+    return render_template("producers.html",
+                           user=(session["info"] if "info" in session else None),
+                           list_party=producers,
+                           list_order=imports,
+                           stat=stat)
 
 
 @app.route("/vendors/", methods=["GET", "POST"])
@@ -75,7 +85,11 @@ def vendors():
     except Exception as e:
         print("error 60")
         print(e)
-    return render_template("vendors.html", user=(session["info"] if "info" in session else None), list_party=vendors, list_order=exports, stat=stat) 
+    return render_template("vendors.html",
+                           user=(session["info"] if "info" in session else None),
+                           list_party=vendors,
+                           list_order=exports,
+                           stat=stat)
 
 
 @app.route("/admin/")
@@ -87,7 +101,11 @@ def admin():
     except Exception as e:
         print(e)
 
-    return render_template("admin.html", user=(session["info"] if "info" in session else None), people=users, modify=modify,quantify=quantify) 
+    return render_template("admin.html",
+                           user=(session["info"] if "info" in session else None),
+                           people=users,
+                           modify=modify,
+                           quantify=quantify)
 
 #******************AUTHENTICATION*************************************************
 
@@ -105,7 +123,8 @@ def loginPOST():
             session["info"] = info[0]
             return redirect(url_for("index"))
 
-    return render_template("login.html", message="Invalid Name or ID")
+    return render_template("login.html",
+                           message="Invalid Name or ID")
     
 
 @app.route("/logout", methods=["POST"])

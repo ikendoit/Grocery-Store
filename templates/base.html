@@ -3,18 +3,8 @@
 
 	<head>
 		<meta charset="utf-8">
-	 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/website.css')}}" />
-		<style> 
-			a:hover {
-				color : red ; 
-				text-decoration: none;
-			}
-
-			h1 {
-				color : red ;
-			}
-		</style>
-		<title> Simple Warehouse</title>
+	 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/base.css')}}" />
+		<title> Simple WareHouse</title>
 
 		<div style="position:fixed; top:0;" >
 				{% if not user %}
@@ -23,56 +13,56 @@
                     document.location.href="/login"; 
             </script>
 				{% else %}
-			<span> hello {{user.Name}}</span>
+			<span> Hello {{user.Name}}</span>
                 {% endif %}
 		</div>
 	</head>
 
 	<body>
 		<header>
-			<h1>Simple Ware House</h1>
+			<h1>Simple WareHouse</h1>
 		</header>
 		<ul class="menu-header" >
 			<li class="nav-item">
-				<a  href= {{ url_for('index') }} >Home </a> 
+				<a  href="{{ url_for('index') }}">Home</a>
 			</li>
 			<li class="nav-item">
-				<a  href= {{ url_for('profile') }} >My Profile</a> 
+				<a  href="{{ url_for('profile') }}">My Profile</a>
 			</li>
             <li class="nav-item">
-                <a href="#" onmouseover="open_manage();"> Manage Business (v)</a>
+                <a onclick="open_manage();"> Manage Business &#9662</a>
             </li>
-            <div id="menu-main" style="display:none">
+            <div id="menu-main">
 				<li class="nav-item">
-					<a href= {{ url_for('products') }} >Product</a>
+					<a href="{{ url_for('products') }}">&#9656 Product</a>
 				</li>
 				<li class="nav-item">
-					<a href="#" onmouseover="open_sub();">Vendors & Producers (v)</a>
+					<a onclick="open_sub();">&#9656 Clients &#9662</a>
 				</li>
-				<div id="menu-sub-1" style="display:none">
+				<div id="menu-sub-1">
 					<li class="nav-item">
-						<a href= {{ url_for('vendors') }} >Vendors</a>
+						<a href="{{ url_for('vendors') }}">&#9657 Vendors</a>
 					</li>
 					<li class="nav-item">
-						<a href= {{ url_for('producers') }} >Producers</a>
+						<a href="{{ url_for('producers') }}">&#9657 Producers</a>
 					</li>
 				</div>
                 {% if user.Salary %}
                 <li class="nav-item">
-                    <a href= {{ url_for('admin') }} >Admin</a>
+                    <a href="{{ url_for('admin') }}">&#9656 Admin</a>
                 </li>
                 {% endif %}
             </div>
 
 			<li class="nav-item">
-				<a href= {{ url_for('contact') }} >Contact</a>
+				<a href="{{ url_for('contact') }}">Contact</a>
 			</li>
 			<li class="nav-item">
-				<a href= {{ url_for('about') }} >About</a>
+				<a href="{{ url_for('about') }}">About</a>
 			</li>
 			<li class="nav-item">
-				<form method="POST" action="/logout" id="form-logout"> 
-					<input type="submit" name="logout" value="log out" style="border:none; background-color:#003366; margin-left:-13px;" />
+				<form method="POST" action="/logout" id="form-logout">
+					<input class="logout-button" type="submit" name="logout" value="Log Out" style="font-size: 18px;"/>
 				</form>
 			</li>
 		</ul>
@@ -85,7 +75,7 @@
  
                 function open_manage(){
                     let type = document.getElementById("menu-main").style.display;
-                    if (type == "none"){
+                    if (type == "none" || type == ""){
                         document.getElementById("menu-main").style.display="block";
                     } else {
                         document.getElementById("menu-main").style.display="none";
@@ -94,7 +84,7 @@
 
                 function open_sub(){
                     let type = document.getElementById("menu-sub-1").style.display;
-                    if (type == "none"){
+                    if (type == "none" || type == ""){
                         document.getElementById("menu-sub-1").style.display="block";
                     } else {
                         document.getElementById("menu-sub-1").style.display="none";
