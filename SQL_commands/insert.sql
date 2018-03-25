@@ -26,7 +26,7 @@ INSERT INTO Staff VALUES(
 9, 'Ken WB', '6520302827181', 'add 13', '1991/3/1', 6023629322, 'thisemail12@gmail.com', '219933112', '2016/5/6'
 );
 INSERT INTO Staff VALUES(
-10, 'Ken WA', '5820302827181', 'add 14', '1991/12/1', 603362962, 'thisemail13@gmail.com', '12933112', '2016/7/6'
+10, 'Logger', '5820302827181', 'add 14', '1991/12/1', 603362962, 'thisemail13@gmail.com', '12933112', '2016/7/6'
 ); 
 
 

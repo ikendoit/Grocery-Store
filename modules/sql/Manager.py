@@ -111,7 +111,7 @@ class Manager(Staff):
     def mod_product(self, form):
         query = ""
         for info in form:
-            if form[info] != "":
+            if form[info] != "" :
                 if info == "name":
                     query = query + " Product_Name='" + form[info] + "' "
                 if info == "price":

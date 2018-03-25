@@ -89,7 +89,6 @@
         fetch("http://35.182.249.219:5000/api/staffs/"+s_id)
             .then((value) => value.json())
             .then((valueJSON)=> {
-                console.log("clickeD");
                 let output = "Dependants: \n";
 
                 for (let data of valueJSON){	
