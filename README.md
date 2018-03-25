@@ -7,7 +7,7 @@ Teamates:
 	pboparai01: Parm Boparai
 	BryanJDaniel: Bryan Daniel
 
-hosted on an Amazon Instance: 35.182.249.219:5000/
+hosted on an Amazon Instance: http://35.182.249.219:5000/
 
 login: 
 Ken W -- 7  (manager account)
