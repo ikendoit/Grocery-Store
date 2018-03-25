@@ -1,5 +1,24 @@
-# Grocery-Store
-A Web Application that manage the system of a grocery store
+# Simple Warehouse
+Web Service to manage a Warehouse System:
+
+ - Import Products from Producers
+ 
+ - Export Products to Vendors
+ 
+ - Manage Products (Quantify products, modify, insert/delete)
+
+ - Manage Producers (Add/Delete/Modify)
+
+ - Manage Vendors (Add/Delete/Modify)
+
+ - Manage Staffs 
+
+    - Insert/modify/delete
+
+    - Change wage/salary 
+
+ - Keeps a Log user, that keeps track of every product modification made (using SQL trigger)
+
 
 Teamates: 
 	Ging Sing: Gary Yue 
