@@ -21,24 +21,32 @@ Web Service to manage a Warehouse System:
 
 
 Teamates: 
-	Ging Sing: Gary Yue 
-	ikendoit: Ken Nguyen
-	pboparai01: Parm Boparai
-	BryanJDaniel: Bryan Daniel
+
+	- Ging Sing: Gary Yue 
+	
+	- ikendoit: Ken Nguyen
+	
+	- pboparai01: Parm Boparai
+	
+	- BryanJDaniel: Bryan Daniel
 
 hosted on an Amazon Instance: http://35.182.249.219:5000/
 
 login: 
-Ken W -- 7  (manager account)
-Ken N -- 1 (normal staff)
+
+ - Ken W -- 7  (manager account)
+ 
+ - Ken N -- 1 (normal staff)
 
 Guide: make sure: 
+
 	export FLASK_APP=index.py
+	
 	export FLASK_DEBUG=1
 
 	python -m flask run 
 
-then: check localhost:5000
+	then: check localhost:5000
 
 Technology stack: 
 
