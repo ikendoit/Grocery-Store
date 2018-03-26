@@ -31,7 +31,7 @@ def query_count_order_vendor(vid):
 #query see the amount of every item that has been ordered by all vendors (eg: popular among vendors)
 #    @return convert(: list of SKU and sum)
 def query_popular_vendor():
-    return utilities.query("SELECT SKU, SUM(Quantity) FROM (SELECT SKU, Quantity FROM Exports_Desc GROUP BY SKU) GROUP BY SKU) ORDER BY SUM(Quantity)")
+    return utilities.query("SELECT SKU, SUM(Amount) as sum FROM Export_Desc GROUP BY SKU ORDER BY SUM(Amount)")
 
 
 # -----------------------------INSERTS-------------------------------

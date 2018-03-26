@@ -1,0 +1,111 @@
+{% extends "base.html" -%}
+{% block body %}
+{% if user.Salary == None %}
+    <script> document.location.href="/" </script>
+{% endif %}
+
+<h1 style="text-align:center"> Statistics </h1>
+
+<h1> {{message}} </h1>
+
+<div style="float:left; width:40%">
+	<h2>Producers by Revenue </h2>
+	<table cellspacing="10px">
+		<thead>
+			<tr>
+				<td>P_ID</td>
+				<td>Amount</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for prod in producers %}
+				<tr>
+					<td>{{prod.P_ID}} </td>
+					<td>{{prod.sum}} $ </td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+<div style="float:left; width:35%">
+	<h2>Popular from Producers </h2>
+	<table cellspacing="10px" >
+		<thead>
+			<tr>
+				<td>SKU</td>
+				<td>Amount</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for prod in prod_producers %}
+				<tr>
+					<td>{{prod.SKU}} </td>
+					<td>{{prod.sum}} (items)</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+<div style="float:left; width:40%">
+	<h2>Vendors by Revenue </h2>
+	<table cellspacing="10px">
+		<thead>
+			<tr>
+				<td>V_ID</td>
+				<td>Amount</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for ven in vendors %}
+				<tr>
+					<td>{{ven.V_ID}} </td>
+					<td>{{ven.sum}} $ </td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+<div style="float:left; width:35%">
+	<h2>Popular among vendors </h2>
+	<table cellspacing="10px">
+		<thead>
+			<tr>
+				<td>SKU</td>
+				<td>Amount</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for ven in prod_vendors %}
+				<tr>
+					<td>{{ven.SKU}} </td>
+					<td>{{ven.sum}} (items)</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+</div>
+<script type="text/javascript">
+	//not needed, can change
+    function analize(s_id){
+        fetch("http://35.182.249.219:5000/api/staffs/"+s_id)
+            .then((value) => value.json())
+            .then((valueJSON)=> {
+                let output = "Dependants: \n";
+
+                for (let data of valueJSON){	
+                    output+=  "StaffID: "+data["Staff_ID"]+"\n"+
+                              "SIN: "+data["dSin"]+"\n"+
+                              "dName: "+data["d_Name"] +"\n"+
+                              "birthdate: " +data["Birthdate"]+"\n";
+                }
+
+                confirm(output);
+            });
+    }
+</script>
+
+{% endblock body %}

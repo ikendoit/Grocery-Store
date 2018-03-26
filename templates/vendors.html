@@ -80,7 +80,7 @@
 
 <script type="text/javascript">
 	function analize(v_id){
-		fetch("http://35.182.249.219:5000/api/vendors/"+v_id)
+		fetch("http://localhost:5000/api/vendors/"+v_id)
 			.then((value) => value.json())
 			.then((valueJSON)=> {
 				console.log(valueJSON);

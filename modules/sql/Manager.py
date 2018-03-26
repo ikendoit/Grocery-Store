@@ -40,18 +40,18 @@ class Manager(Staff):
     # query to see highest revenue generating vendor
     #   @params: none
     #   @return: vendor object
-    def query_max_vendor(self):
-        utilities.query(
-            "SELECT V_ID,MAX(Revenue) FROM (SELECT SUM(Total_Price) AS Revenue, V_ID FROM Order_Exports GROUP BY V_ID)")
-        # may need to fix
+    #def query_max_vendor(self):
+    #    utilities.query(
+    #        "SELECT V_ID,MAX(Revenue) FROM (SELECT SUM(Total_Price) AS Revenue, V_ID FROM Order_Exports GROUP BY V_ID)")
+    #    # may need to fix
 
-    # query to see highest revenue consuming producer
-    #   @params: none
-    #   @return: producer object
-    def query_max_producer(self):
-        utilities.query(
-            "SELECT P_ID,MAX(Revenue) FROM (SELECT SUM(Total_Price) AS Revenue, P_ID FROM Order_Imports GROUP BY P_ID)")
-        # had a [0]
+    ## query to see highest revenue consuming producer
+    ##   @params: none
+    ##   @return: producer object
+    #def query_max_producer(self):
+    #    utilities.query(
+    #        "SELECT P_ID,MAX(Revenue) FROM (SELECT SUM(Total_Price) AS Revenue, P_ID FROM Order_Imports GROUP BY P_ID)")
+    #    # had a [0]
 
     # query to remove a worker
     #   @Params: workerID
@@ -72,14 +72,7 @@ class Manager(Staff):
         utilities.execute("UPDATE Managers SET Salary = '" + salary + "' WHERE Staff_ID = " + managerid)
 
 
-
-
     # -----queries-----
-
-    # query to see all managers
-    #   @return convert(: list of manager )
-    def query_all_manager(self):
-        return utilities.query("SELECT * FROM Manager")
 
     # query to see all employees
     def query_all_employee(self):

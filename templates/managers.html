@@ -1,0 +1,81 @@
+{% extends "base.html" -%}
+{% block body %}
+{% if user.Salary == None %}
+    <script> document.location.href="/" </script>
+{% endif %}
+
+<h1 style="text-align:center"> Managers Administration </h1>
+
+<h1> {{message}} </h1>
+
+<script>
+
+    function addNew(){
+        swal('<form action="/addstaff" method="POST" ><h2> Add new Worker </h2><p>Name: <input type="text" name="name" /></p><p>SIN: <input type="text" name="sin" /></p><p>Address: <input type="text" name="address" /></p><p>BirthDate: <input type="text" name="birthdate" /></p><p>Phone: <input type="text" name="phone" /></p><p>Email: <input type="text" name="email" /></p><p>Bank Info: <input type="text" name="bank" /></p><input type="submit" value="Add new Worker" /></form> ');
+    }
+
+    function modify(id){
+        swal('<form action="/modstaff" method="POST"><h2> Modify Staff</h2><p>SKU: <input type="text" name="staff_id" value="'+id+'" /></p><p>Name: <input type="text" name="name" /></p><p>Price: <input type="text" name="price" /></p><p>Amount: <input type="text" name="amount" /></p><p>section: <input type="text" name="section" /></p><p>weight (g/item): <input type="text" name="weight" /></p><input type="submit" value="Modify" /></form> ');
+
+</script>
+
+<h1> Administraion Management </h1>
+
+<p>
+	<a onclick="addNew()" style="margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Add New Staff </a>
+	{% if user.Salary %}
+	<a onclick="modify(0)" style="margin-left:20%;border: 2px solid blue; color:purple; padding:10px;"> Modify Staff </a>
+	{% endif %}
+</p>
+
+<table cellspacing="10px">
+    <thead>
+        <tr>
+            <td>Manager ID </td>
+            <td>Name</td>
+            <td>Start Date</td>
+            <td>Date Start Manager </td>
+			<td>Salary ($/month)</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for staff in people %}
+            <tr onclick="analize({{staff.Staff_ID}});">
+                <td>{{staff.Staff_ID}} </td>
+                <td>{{staff.Name}} </td>
+                <td>{{staff.Date_info_Start}} </td>
+                <td>{{staff.Date_info_Start_Manager}} </td>
+                <td>{{staff.Salary}} </td>
+                <td><button onclick="modify({{staff.Staff_ID}})"> Modify </button></td>
+                <td>
+                    <form method="POST" action="/delstaff">
+                        <input type="text" name="id" value={{staff.Staff_ID}} style="display:none"/>
+                        <input type="submit" value="delete"/> 
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    function analize(s_id){
+        fetch("http://35.182.249.219:5000/api/staffs/"+s_id)
+            .then((value) => value.json())
+            .then((valueJSON)=> {
+                let output = "Dependants: \n";
+
+                for (let data of valueJSON){	
+                    output+=  "StaffID: "+data["Staff_ID"]+"\n"+
+                              "SIN: "+data["dSin"]+"\n"+
+                              "dName: "+data["d_Name"] +"\n"+
+                              "birthdate: " +data["Birthdate"]+"\n";
+                }
+
+                confirm(output);
+            });
+    }
+</script>
+
+
+{% endblock body %}

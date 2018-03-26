@@ -32,12 +32,15 @@
 				</li>
 				<div id="menu-main">
 					<li class="nav-item">
+						<a href="{{ url_for('statistics') }}">&#9656 Statistics</a>
+					</li>
+					<li class="nav-item">
 						<a href="{{ url_for('products') }}">&#9656 Product</a>
 					</li>
 					<li class="nav-item" onclick="open_sub();">
 						<a>&#9656 Clients &#9662</a>
 					</li>
-					<div id="menu-sub-1">
+					<div id="menu-sub-1" >
 						<li class="nav-item">
 							<a href="{{ url_for('vendors') }}">&#9657 Vendors</a>
 						</li>
@@ -45,11 +48,24 @@
 							<a href="{{ url_for('producers') }}">&#9657 Producers</a>
 						</li>
 					</div>
-					{% if user.Salary %}
-					<li class="nav-item">
-						<a href="{{ url_for('admin') }}">&#9656 Admin</a>
+					<li class="nav-item" onclick="open_sub_2();"> 
+						<a>&#9656 Administration &#9662</a>
 					</li>
-					{% endif %}
+					<div id="menu-sub-2" >
+						<li class="nav-item">
+							<a href="{{ url_for('workers') }}">&#9657 Workers</a>
+						</li>
+
+						<li class="nav-item">
+							<a href="{{ url_for('managers') }}">&#9657 Managers</a>
+						</li>
+
+						{% if user.Salary %}
+						<li class="nav-item">
+							<a href="{{ url_for('admin') }}">&#9656 General</a>
+						</li>
+						{% endif %}
+					</div>
 				</div>
 
 				<li class="nav-item">
@@ -83,10 +99,19 @@
 
                 function open_sub(){
                     let type = document.getElementById("menu-sub-1").style.display;
-                    if (type == "none" || type == ""){
-                        document.getElementById("menu-sub-1").style.display="block";
+                    if (type == "none" || type == "" || type == undefined){
+						document.getElementById("menu-sub-1").style.display="block";
                     } else {
                         document.getElementById("menu-sub-1").style.display="none";
+                    }
+                }               
+
+                function open_sub_2(){
+                    let type = document.getElementById("menu-sub-2").style.display;
+                    if (type == "none" || type == "" || type == undefined){
+                        document.getElementById("menu-sub-2").style.display="block";
+                    } else {
+                        document.getElementById("menu-sub-2").style.display="none";
                     }
                 }               
 
@@ -94,7 +119,7 @@
 					fetch("/api/Products")
 						.post({"checking":123});;
 				}
-            </script>
+            </script defer>
 		</footer>
 	</body>
 

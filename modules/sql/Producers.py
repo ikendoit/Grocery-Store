@@ -35,10 +35,9 @@ def query_count_order_producer(pid):
 # query see the amount of every item that has been bought by all producer (eg: popular among producers/ most bought by us )
 #    @return convert(: list of SKU and sum)
 def query_popular_producer():
-    return utilities.query("SELECT SKU, SUM(Quantity) "
-                           "FROM (SELECT SKU, Quantity FROM Imports_Desc GROUP BY SKU) GROUP BY SKU) "
-                           "ORDER BY SUM(Quantity)")
-
+    return utilities.query("SELECT SKU, SUM(Amount) as sum "
+                           "FROM Import_Desc GROUP BY SKU "
+                           "ORDER BY SUM(Amount)")
 
 # --------------------------Inserts--------------------------
 
@@ -48,3 +47,4 @@ def query_popular_producer():
 #   @return: none
 def insert_producer(email, name, phone, owner, address):
     utilities.execute("INSERT INTO Producers values (0,'"+email+"','"+phone+"','"+name+"','"+owner+"','"+address+"')")
+

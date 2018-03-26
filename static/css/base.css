@@ -135,6 +135,17 @@
         display: none;
     }
 
+    #menu-sub-2{
+        display: none;
+    }
+
+    #menu-sub-2 li{
+
+        padding-left: 40px;
+        width: 86%;
+
+    }
+
     #menu-sub-1 li{
 
         padding-left: 40px;
@@ -148,6 +159,7 @@
         border: none;
         cursor: pointer;
     }
+
     form input[name="logout"]: hover .logout-button[name="logout"]{
 
         background-color : #00BFFF;

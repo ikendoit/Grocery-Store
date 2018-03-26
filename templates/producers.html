@@ -78,7 +78,7 @@
 	
 <script type="text/javascript">
 	function analize(p_id){
-		fetch("http://35.182.249.219:5000/api/producers/"+p_id)
+		fetch("http://localhost:5000/api/producers/"+p_id)
 			.then((value) => value.json())
 			.then((valueJSON)=> {
 				let output = valueJSON[0]["COUNT(*)"] +" Import Order Was Made with this Producer";

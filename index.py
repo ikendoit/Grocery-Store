@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, url_for, session, redirect, jsonify
 from flask_cors import CORS
+
 from modules.sql import Login, Manager, Vendors, Producers, Products, Staff, Parties
+
+from Blue_Prints.authen import authenter
 
 app = Flask(__name__)
 app.secret_key = "CPSC 3332 << 1"
@@ -9,8 +12,10 @@ CORS(app)
 
 manager = Manager.Manager()
 
-# ********************USER PAGES********************************************
+#******************AUTHENTICATION*************************************************
+app.register_blueprint(authenter);
 
+# ********************USER PAGES********************************************
 
 @app.route("/")
 def index(user=None):
@@ -107,30 +112,43 @@ def admin():
                            modify=modify,
                            quantify=quantify)
 
-#******************AUTHENTICATION*************************************************
+@app.route("/workers/")
+def workers():
+    try:
+        users = manager.query_worker();
+    except Exception as e:
+        print(e)
 
+    return render_template("workers.html",
+                           user=(session["info"] if "info" in session else None),
+                           people=users)
+@app.route("/managers/")
+def managers():
+    try:
+        users = manager.query_manager(); 
+    except Exception as e:
+        print(e)
 
-@app.route("/login", methods=["POST"])
-def loginPOST():
-    # authenticate user
-    if request.form["name"] != "" and request.form["id"] != "":
+    return render_template("managers.html",
+                           user=(session["info"] if "info" in session else None),
+                           people=users)
 
-        info = Login.login_user(request.form["name"], request.form["id"])
+@app.route("/statistics/")
+def statistics():
+    try:
+        producers = Producers.query_max_producer();
+        vendors = Vendors.query_max_vendor();
+        prod_producers = Producers.query_popular_producer();
+        prod_vendors = Vendors.query_popular_vendor();
+    except Exception as e:
+        print(e)
 
-        #set user session
-        if len(info) > 0:
-            session["user"] = request.form["name"]
-            session["info"] = info[0]
-            return redirect(url_for("index"))
-
-    return render_template("login.html",
-                           message="Invalid Name or ID")
-    
-
-@app.route("/logout", methods=["POST"])
-def logout():
-    session.pop("info",None);
-    return redirect(url_for("login"));
+    return render_template("statistics.html",
+                           user=(session["info"] if "info" in session else None),
+                           producers=producers,
+                           vendors=vendors,
+                           prod_producers = prod_producers,
+                           prod_vendors = prod_vendors)
 
 
 #***********************INSERT OPERATIONS**********************************************
@@ -285,22 +303,21 @@ def api_products(sku):
 
 @app.route("/api/producers/<pid>", methods=["GET"])
 def api_producers(pid):
-    a = Parties.query_count_order_producer(pid)
+    a = manager.query_count_order_producer(pid)
     return jsonify(a)
 
 
 @app.route("/api/vendors/<vid>", methods=["GET"])
 def api_vendors(vid):
-    a = Parties.query_count_order_vendor(vid)
+    a = manager.query_count_order_vendor(vid)
     return jsonify(a)
 
 
 @app.route("/api/staffs/<sid>", methods=["GET"])
 def api_staffs(sid):
-    a = Staff.query_dependants(sid)
+    a = manager.query_dependants(sid)
     return jsonify(a)
 
 
-# auto updates without needing to manually update again
 if __name__ == '__main__':
     app.run(debug=True)

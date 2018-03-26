@@ -13,4 +13,3 @@ def query_count_order_vendor(vid):
 #    @return convert(: int)
 def query_count_order_producer(pid):
     return utilities.query("SELECT COUNT(*) FROM Order_Imports where P_ID='"+pid+"'")
-
