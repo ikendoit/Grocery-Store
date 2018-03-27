@@ -1,32 +1,32 @@
 INSERT INTO Staff VALUES(
-1, 'Ken N', '1020302827181', '3913 Cates Landing Way', '1998/3/1', 6043669692, 'virginman101@gmail.com', '111222131112', '2017/9/6'
+1, 'Ken N', '143430346', '3913 Cates Landing Way', '1998/3/1', 6047191600, 'virginman101@gmail.com', '5520033435035168', '2017/9/6'
 );
 INSERT INTO Staff VALUES(
-2, 'Gary Y', '1123211127181', '323 something Vancouver', '1912/3/1', '6043569692', 'thisemail2@gmail.com', '155222131112', '2017/9/1'
+2, 'Gary Y', '138347950', '3988 Alness Street', '1912/3/1', 6047206029, 'mthurn@live.com', '5137403916368732', '2017/9/1'
 );
 INSERT INTO Staff VALUES(
-3, 'Parm B', '1220302827181', '313 VC', '1913/3/1', 6043269692, 'thisemail3@gmail.com', '144222131112', '2017/9/2'
+3, 'Parm B', '164791279', '700 184th Street', '1913/3/1', 6043666528, 'fangorn@hotmail.com', '5127175163174482', '2017/9/2'
 );
 INSERT INTO Staff VALUES(
-4, 'Ken F', '1320302827181', '391 Cates Landing Way', '1992/3/1', 6043619692, 'thisemail4@gmail.com', '133222131555', '2017/9/5'
+4, 'Bradley P', '082191289', '1738 St. John Street', '1992/3/1', 6044425489, 'euice@outlook.com', '5221226689506908', '2017/9/5'
 );
 INSERT INTO Staff VALUES(
-5, 'Ken W', '1420302827281', 'add 52', '1991/3/1', 6003629692, 'thisemail5@gmail.com', '122222333112', '2016/9/6'
+5, 'Diane J', '482518123', '1190 Fourth Avenue', '1991/3/1', 7789898303, 'rgarcia@optonline.net', '5404374921536637', '2016/9/6'
 );
 INSERT INTO Staff VALUES(
-6, 'Ken Q', '20302827181', 'add 50', '1991/3/1', 6033629692, 'thisemail@gmail.com', '12333112', '2016/1/6'
+6, 'Albert M', '093507382', '2472 St. John Street', '1991/3/1', 6042801947, 'webdragon@comcast.net', '5324206172373343', '2016/1/6'
 );
 INSERT INTO Staff VALUES(
-7, 'Ken W', '1420302827181', 'add 39', '1989/3/1', 6043629692, 'thisemail10@gmail.com', '129999933112', '2016/2/6'
+7, 'Ken W', '452091192', '2318 Tycos Dr', '1989/3/1', 6049234929, 'mxiao@yahoo.com', '5177433405186197', '2016/2/6'
 );
 INSERT INTO Staff VALUES(
-8, 'Ken WC', '7720302827181', 'add 12', '1991/1/1', 6013629692, 'thisemail11@gmail.com', '9999933112', '2016/12/6'
+8, 'Ruby M', '255165425', '127 Sheppard Ave', '1991/1/1', 6047343929, 'drezet@me.com', '5289002117773645', '2016/12/6'
 );
 INSERT INTO Staff VALUES(
-9, 'Ken WB', '6520302827181', 'add 13', '1991/3/1', 6023629322, 'thisemail12@gmail.com', '219933112', '2016/5/6'
+9, 'David R', '507959773', '1756 Wellington Ave', '1991/3/1', 6047310740, 'miyop@icloud.com', '5324205940851432', '2016/5/6'
 );
 INSERT INTO Staff VALUES(
-10, 'Logger', '5820302827181', 'add 14', '1991/12/1', 603362962, 'thisemail13@gmail.com', '12933112', '2016/7/6'
+10, 'Francis L', '350231072', '1381 MacLaren Street', '1991/12/1', 6046481365, 'sakusha@yahoo.ca', '5177430140201414', '2016/7/6'
 ); 
 
 
