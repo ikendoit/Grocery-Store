@@ -5,20 +5,36 @@
 	<h1> Contact Us </h1>
 
 	<h2> Address: </h2>
-	<p> Langara College - Vancouver - BC </p>
+	<h3> Langara College </h3>
+	<p> 100 West 49th Avenue - Vancouver - BC </p>
+	<p> V5Y 2Z6</p>
 
 	<h2> Phone: </h2>
-	<p> 911 </p>
+	<p> 604-867-5309 ask for Jenny</p>
 
 	<h2> Map: </h2>
 	<p> Insert iframe google map </p>
 
-	<form method="POST">
-		<p> name: <input type="text" id="fname"> </input></p>
-		<p> message: <input type="text" id="fmessage"> </input></p>
-		<p> email/phone: <input type="text" id="fcontact"> </input></p>
+	<h2>Leave us a comment:</h2>
+	<div class="container">
+	  <form>
+	    <label>Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+	    <input type="text" name="name"><br />
+	    <label>Message: &nbsp;&nbsp;</label>
+	    <input type="text" name="message"><br />
+	    <label>Phone: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+	    <input type="text" name="phone"><br />
+	    <label>Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+	    <input type="text" name="email"><br />
+	  </form>
+	</div>
+
+<!-- 	<form method="POST">
+		<p> Name: <input type="text" id="fname"> </input></p>
+		<p> Message: <input type="text" id="fmessage"> </input></p>
+		<p> Email/Phone: <input type="text" id="fcontact"> </input></p>
 		<input type="submit" id="fsubmit"> </input>
 	</form>
-
+ -->
 
 {% endblock %}

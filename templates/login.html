@@ -1,3 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+	<style>
+		
+		form {
+				border: 3px solid #f1f1f1;
+		}
+
+		input[type=text]{
+		    width: 100%;
+		    padding: 12px 20px;
+		    margin: 8px 0;
+		    display: inline-block;
+		    border: 2px solid #000;
+		    box-sizing: border-box;
+		}
+
+		button {
+		    background-color: green;
+		    color: white;
+		    padding: 14px 20px;
+		    margin: 8px 0;
+		    border: none;
+		    cursor: pointer;
+		    width: 100%;
+		}
+
+		button:hover {
+		    opacity: 0.9;
+		}
+
+		.imgcontainer {
+				text-align: center;
+				margin: 24px 0 12px 0;
+		}
+
+		img.warehouse {
+				width: 30%;
+				border-radius: 25%;
+		}
+		
+		.container {
+		    padding: 16px;
+		}
+
+	</style>
+	
+	<head>	
+		<div class="container" style="background-color:#87ceeb";>
+			<h2>EASY WAREHOUSE MANAGEMENT LTD.</h2>
+		</div>
+	</head>
+
+	<body>
+
+	<form method="POST" action="/login" style="text-align:center;">
+
+		<div class="imgcontainer">
+    	<img src="/static/img_warehouse.jpg" alt="Warehouse" class="warehouse">
+  	</div>
+
+	  <div class="container">
+	    <label for="name"><b>Full Name</b></label>
+	    <input type="text" placeholder="Enter Full Name" name="name" required>
+
+	    <label for="id"><b>ID</b></label>
+	    <input type="text" placeholder="Enter ID" name="id" required>
+
+	    <button type="submit" value="log in" >Login</button>
+	  </div>
+	</form>
+
+	</body>
+</html>
+
+<!-- 
 <h1 style="text-align:center"> Easy WareHouse Management</h1>
 {% if message %} <h1 style="text-align:center"> {{message}} </h1> {% endif %}
 
@@ -6,4 +83,4 @@
     <p> ID <input type="text" name="id" /> </p>
     <p> <input type="submit" value="log in" /> </p>
 </form>
-
+ -->
