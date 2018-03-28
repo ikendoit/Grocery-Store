@@ -44,9 +44,9 @@
 					{% if ministat.V_ID == vendor.V_ID %}
 						<td>{{ministat.sum}}</td>
 					{% else %}
-						<td></td>
 					{% endif %}
 				{% endfor %}
+				<td> 0 </td>
 				{% if user.Salary%}
 				<td><button onclick="addNew()">Add</button></td>
 				<td><button onclick="modify({{vendor.V_ID}})"> Modify </button></td>

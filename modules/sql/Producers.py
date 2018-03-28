@@ -16,7 +16,6 @@ def query_max_producer():
                            "FROM (SELECT SUM(Total_Price) AS Revenue, P_ID FROM Order_Imports GROUP BY P_ID) p GROUP BY P_ID "
                            "ORDER BY SUM(Revenue) DESC")
 
-print(query_max_producer());
 #query to see how many distinct producers did we import from, what the total revenue by each date
 #   @params: none
 #   @return: list of Date_info, sum, num_prods in decending order
