@@ -63,8 +63,16 @@
 
 
 
-<form style="width:35%; float:left; background-color:lightgreen; padding:10px"><h2> select your products </h2><p>SKU: <input type="text" id="sku" /></p><p>Name: <input type="checkBox" id="name" /></p><p>Price: <input type="checkBox" id="price" /></p><p>Amount: <input type="checkBox" id="amount" /></p><p>section: <input type="checkBox" id="section" /></p><p>weight (g/item): <input type="checkBox" id="weight" /></p>
-    <p><button onclick="goProjection();" style="width:300px; height:50px"> Project Product </button> </p></form>
+<div style="width:35%; float:left; background-color:lightgreen; padding:10px">
+	<h2> select your products </h2>
+	<p>SKU: <input type="text" id="sku" /></p>
+	<p>Name: <input type="checkBox" id="name" /></p>
+	<p>Price: <input type="checkBox" id="price" /></p>
+	<p>Amount: <input type="checkBox" id="amount" /></p>
+	<p>section: <input type="checkBox" id="section" /></p>
+	<p>weight (g/item): <input type="checkBox" id="weight" /></p>
+    <button type="button" onclick="goProjection();" style="width:300px; height:50px"> Project Product </button> 
+</div>
 <h2><div id="projection"> </div></h2>
 
 <script> 
@@ -90,7 +98,7 @@
             "Section_Num":document.getElementById("section").checked,
             "Weight":document.getElementById("weight").checked,
         };
-
+		console.log("checking");
 		fetch("http://localhost:5000/api/product/", {
             method:"POST",
             body: JSON.stringify(query)
@@ -105,6 +113,6 @@
                 document.getElementById("projection").innerHTML = result;
             });
     }
-</script defer>
+</script>
 
 {% endblock %}
