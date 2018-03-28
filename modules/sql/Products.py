@@ -1,5 +1,6 @@
 from modules.sql import utilities
 import datetime
+import json
 
 
 # query product info
@@ -9,6 +10,26 @@ def query_product_info(sku):
     return utilities.query("SELECT * from Products "
                            "WHERE SKU='"+sku+"'")
 
+#projection query:
+def query_props(req):
+    #parse POST REQUEST
+    req = json.loads(req);
+
+    #craft query
+    query = "SELECT ";
+    fields = "";
+
+    #fill in query
+    for key,value in req.items():
+        if key != "SKU" :   
+            if value == True: 
+                fields = fields+key+", "
+            
+    fields = fields+"SKU "
+
+    query = query + fields + "FROM Products WHERE SKU='" +req["SKU"]+"'";
+
+    return utilities.query(query);
 
 # query all products info
 #    @return convert( : list of dicts

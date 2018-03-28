@@ -8,7 +8,7 @@
 
 <h1> {{message}} </h1>
 
-<div style="float:left; width:40%">
+<div style="float:left; width:35%">
 	<h2>Producers by Revenue </h2>
 	<table cellspacing="10px">
 		<thead>
@@ -28,7 +28,7 @@
 	</table>
 </div>
 
-<div style="float:left; width:35%">
+<div style="float:right; width:35%">
 	<h2>Popular from Producers </h2>
 	<table cellspacing="10px" >
 		<thead>
@@ -48,7 +48,27 @@
 	</table>
 </div>
 
-<div style="float:left; width:40%">
+<div style="float:right; width:35%">
+	<h2>Popular among vendors </h2>
+	<table cellspacing="10px">
+		<thead>
+			<tr>
+				<td>SKU</td>
+				<td>Amount</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for ven in prod_vendors %}
+				<tr>
+					<td>{{ven.SKU}} </td>
+					<td>{{ven.sum}} (items)</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+<div style="float:left; width:35%">
 	<h2>Vendors by Revenue </h2>
 	<table cellspacing="10px">
 		<thead>
@@ -68,26 +88,50 @@
 	</table>
 </div>
 
-<div style="float:left; width:35%">
-	<h2>Popular among vendors </h2>
+<div style="float:right; width:35%">
+	<h2> By Date: How many producers made order,and what is the total money spent</h2>
 	<table cellspacing="10px">
 		<thead>
 			<tr>
-				<td>SKU</td>
-				<td>Amount</td>
+				<td>Date</td>
+				<td>Amount of Producer</td>
+				<td>Money Spent</td>
 			</tr>
 		</thead>
 		<tbody>
-			{% for ven in prod_vendors %}
+			{% for prod in num_producers %}
 				<tr>
-					<td>{{ven.SKU}} </td>
-					<td>{{ven.sum}} (items)</td>
+					<td>{{prod.Date_info}} </td>
+					<td>{{prod.num_prods}} </td>
+					<td>{{prod.sum}} $ </td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
-
 </div>
+
+<div style="float:left; width:35%">
+	<h2> By Date: How many vendors made order,and what is the total money got</h2>
+	<table cellspacing="10px">
+		<thead>
+			<tr>
+				<td>Date</td>
+				<td>Amount of Vendors</td>
+				<td>Money Obtained</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for ven in num_vendors %}
+				<tr>
+					<td>{{ven.Date_info}} </td>
+					<td>{{ven.num_vens}} </td>
+					<td>{{ven.sum}} $ </td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+
 <script type="text/javascript">
 	//not needed, can change
     function analize(s_id){

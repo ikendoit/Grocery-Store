@@ -34,6 +34,13 @@ def query_popular_vendor():
     return utilities.query("SELECT SKU, SUM(Amount) as sum FROM Export_Desc GROUP BY SKU ORDER BY SUM(Amount)")
 
 
+#query to see how many distinct vendors did we export to, what the total revenue by each date
+#   @params: none
+#   @return: list of Date_info, sum, num_vens in decending order
+def query_distinct_vendor():
+    return utilities.query("SELECT p.Date_info,SUM(p.Revenue) as sum,COUNT(p.V_ID) as num_vens FROM (SELECT SUM(Total_Price) AS Revenue, V_ID, Date_info FROM Order_Exports GROUP BY V_ID,Date_info) p GROUP BY Date_info ORDER BY SUM(Revenue) DESC;");
+
+
 # -----------------------------INSERTS-------------------------------
 
 #Insert a new vendor

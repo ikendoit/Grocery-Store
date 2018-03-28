@@ -61,6 +61,12 @@
 	</tbody>
 </table>
 
+
+
+<form style="width:35%; float:left; background-color:lightgreen; padding:10px"><h2> select your products </h2><p>SKU: <input type="text" id="sku" /></p><p>Name: <input type="checkBox" id="name" /></p><p>Price: <input type="checkBox" id="price" /></p><p>Amount: <input type="checkBox" id="amount" /></p><p>section: <input type="checkBox" id="section" /></p><p>weight (g/item): <input type="checkBox" id="weight" /></p>
+    <p><button onclick="goProjection();" style="width:300px; height:50px"> Project Product </button> </p></form>
+<h2><div id="projection"> </div></h2>
+
 <script> 
 	function analize(sku){
 		fetch("http://35.182.249.219:5000/api/products/"+sku)
@@ -74,6 +80,31 @@
 				confirm(output);
 			});
 	}
-</script>
+
+    function goProjection(){
+        var query = {
+            "SKU":document.getElementById("sku").value,
+            "Product_Name":document.getElementById("name").checked,
+            "Price":document.getElementById("price").checked,
+            "Amount":document.getElementById("amount").checked,
+            "Section_Num":document.getElementById("section").checked,
+            "Weight":document.getElementById("weight").checked,
+        };
+
+		fetch("http://localhost:5000/api/product/", {
+            method:"POST",
+            body: JSON.stringify(query)
+        })
+            .then((value)=> value.json())
+            .then((valueJSON)=> {
+                let result = "sku: "+valueJSON[0]["SKU"]+"<p></p>";
+                Object.keys(valueJSON[0]).forEach((key)=>{
+                    console.log(key);
+                    result+= key+": "+valueJSON[0][key]+"<p></p>";
+                });
+                document.getElementById("projection").innerHTML = result;
+            });
+    }
+</script defer>
 
 {% endblock %}

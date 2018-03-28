@@ -9,3 +9,34 @@
 4. Added sweet alert 2 for alert form, makes page cleaner
 
 5. Created restAPI to return result of query in json form for quick lookup
+
+
+projection query: 
+	get info of a product depending on the chosen props
+
+selection query:
+	Products => click on product 
+
+Join Query: 
+	Login.py
+
+Projection Query:
+	Producers 
+
+Aggregation query: 
+	count order export/ import in Producers 
+
+Nested aggragation of group by: 
+	Producers: query distinct producers
+
+Delete:
+	delete products
+
+insert: 
+	insert producers/products/vendor
+
+update: 
+	modify product
+
+Trigger: 
+	Add a record into Modify of User(ID=10) whenever anyone makes a product modify

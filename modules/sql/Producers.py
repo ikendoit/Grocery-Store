@@ -16,6 +16,12 @@ def query_max_producer():
                            "FROM (SELECT SUM(Total_Price) AS Revenue, P_ID FROM Order_Imports GROUP BY P_ID) p GROUP BY P_ID "
                            "ORDER BY SUM(Revenue) DESC")
 
+print(query_max_producer());
+#query to see how many distinct producers did we import from, what the total revenue by each date
+#   @params: none
+#   @return: list of Date_info, sum, num_prods in decending order
+def query_distinct_producer():
+    return utilities.query("SELECT p.Date_info,SUM(p.Revenue) as sum,COUNT(p.P_ID) as num_prods FROM (SELECT SUM(Total_Price) AS Revenue, P_ID, Date_info FROM Order_Imports GROUP BY P_ID,Date_info) p GROUP BY Date_info ORDER BY SUM(Revenue) DESC;");
 
 # query to see all order import and their description
 #   @return (list)

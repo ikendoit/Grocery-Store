@@ -1,3 +1,4 @@
+use grocery;
 INSERT INTO Staff VALUES(
 1, 'Ken N', '143430346', '3913 Cates Landing Way', '1998/3/1', 6047191600, 'virginman101@gmail.com', '5520033435035168', '2017/9/6'
 );

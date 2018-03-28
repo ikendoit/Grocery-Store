@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, url_for, session, redirect, jsonify
 from flask_cors import CORS
+import json
 
 from modules.sql import Login, Manager, Vendors, Producers, Products, Staff, Parties
 
@@ -140,6 +141,9 @@ def statistics():
         vendors = Vendors.query_max_vendor();
         prod_producers = Producers.query_popular_producer();
         prod_vendors = Vendors.query_popular_vendor();
+        num_producers = Producers.query_distinct_producer();
+        num_vendors = Vendors.query_distinct_vendor();
+
     except Exception as e:
         print(e)
 
@@ -148,7 +152,9 @@ def statistics():
                            producers=producers,
                            vendors=vendors,
                            prod_producers = prod_producers,
-                           prod_vendors = prod_vendors)
+                           prod_vendors = prod_vendors,
+                           num_producers = num_producers,
+                           num_vendors = num_vendors)
 
 
 #***********************INSERT OPERATIONS**********************************************
@@ -297,9 +303,13 @@ def mod_staff():
 
 @app.route("/api/products/<sku>", methods=["GET"])
 def api_products(sku):
-    print(request);
-    a = Products.query_product_info(sku);
-    return jsonify(a);
+    info = Products.query_product_info(sku);
+    return jsonify(info);
+
+@app.route("/api/product/", methods=["POST"])
+def api_project_products():
+    result = Products.query_props(request.data);
+    return jsonify(result);
 
 @app.route("/api/producers/<pid>", methods=["GET"])
 def api_producers(pid):
@@ -317,6 +327,7 @@ def api_vendors(vid):
 def api_staffs(sid):
     a = manager.query_dependants(sid)
     return jsonify(a)
+
 
 
 if __name__ == '__main__':
