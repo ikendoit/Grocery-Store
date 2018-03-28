@@ -6,6 +6,26 @@ form span{
 
 }
 
-form{
+#name, #address{
+
+    width: 105px;
+
+}
+
+td{
+
+    width: 60px;
+
+}
+
+td button{
+
+    width: 100%;
+
+}
+
+td form input{
+
+    width: 100%;
 
 }

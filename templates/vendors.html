@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block body %}
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/producers.css')}}" />
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/vendors.css')}}" />
 
 
 <h1 style="text-align:center"> Vendors Manager </h1>
@@ -13,18 +13,11 @@
     }
 
     function modify(id){
-        swal('<form action="/modvendors" method="POST" style="float:right; width:47%"><h3> Modify Vendor by ID</h3><span> ID: </span><input type="text" name="id" /><br<span> Name: </span><input type="text" name="name" /><br><span> Email: </span><input type="text" name="email" /><br><span> Phone: </span><input type="text" name="phone" /><br><span> Address: </span><input type="text" name="address" /><br><span> Owner Name: </span><input type="text" name="owner_name" /><br><input type="submit" value="Add New" /></form>');
+        swal('<form action="/modvendors" method="POST" ><h3> Modify Vendor by ID</h3><span> ID: </span><input type="text" name="id" /><br><span> Name: </span><input type="text" name="name" /><br><span> Email: </span><input type="text" name="email" /><br><span> Phone: </span><input type="text" name="phone" /><br><span> Address: </span><input type="text" name="address" /><br><span> Owner Name: </span><input type="text" name="owner_name" /><br><input type="submit" value="Add New" /></form>');
     }
 
 </script>
 <h2> List of Vendor </h2>
-
-<p>
-	<a onclick="addNew()" style="margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Add New Vendor </a>
-	{% if user.Salary %}
-	<a onclick="modify(0)" style="margin-left:20%;border: 2px solid blue; color:purple; padding:10px;"> Modify Vendor </a>
-	{% endif %}
-</p>
 
 <table cellspacing="20px" style="text-align:center">
 	<thead>
@@ -40,26 +33,30 @@
 	</thead>
 	<tbody>
 		{% for vendor in list_party %}
-			<tr onclick="analize({{vendor.V_ID}});">
+			<tr>
 				<td>{{vendor.V_ID}}</td>
-				<td>{{vendor.V_Name}}</td>  
+				<td id="name">{{vendor.V_Name}}</td>
 				<td>{{vendor.Email}}</td>
 				<td>{{vendor.Owner_Name}}</td>
 				<td>{{vendor.PhoneNum}}</td>
-				<td>{{vendor.Address}}</td>
+				<td id="address">{{vendor.Address}}</td>
 				{% for ministat in stat %}
 					{% if ministat.V_ID == vendor.V_ID %}
-						<td> {{ministat.sum}}</td>
+						<td>{{ministat.sum}}</td>
+					{% else %}
+						<td></td>
 					{% endif %}
 				{% endfor %}
 				{% if user.Salary%}
-					<td><button onclick="modify({{vendor.V_ID}})"> Modify </button></td>
-					<td>
-						<form method="POST" action="/delvendor">
-							<input type="text" name="v_id" value={{vendor.V_ID}} style="display:none"/>
-							<input type="submit" value="delete"/> 
-						</form>
-					</td>
+				<td><button onclick="addNew()">Add</button></td>
+				<td><button onclick="modify({{vendor.V_ID}})"> Modify </button></td>
+				<td>
+					<form method="POST" action="/delvendor">
+						<input type="text" name="v_id" value={{vendor.V_ID}} style="display:none"/>
+						<input type="submit" value="Delete"/>
+					</form>
+				</td>
+				<td><button  onclick="analize({{vendor.V_ID}});">Exports</button></td>
 
 				{% endif %}
 				{% for export in list_order %}
