@@ -98,7 +98,6 @@
             "Section_Num":document.getElementById("section").checked,
             "Weight":document.getElementById("weight").checked,
         };
-		console.log("checking");
 		fetch("http://localhost:5000/api/product/", {
             method:"POST",
             body: JSON.stringify(query)
