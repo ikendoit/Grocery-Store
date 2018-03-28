@@ -16,8 +16,28 @@
         swal('<form action="/modvendors" method="POST" ><h3> Modify Vendor by ID</h3><span> ID: </span><input type="text" name="id" /><br><span> Name: </span><input type="text" name="name" /><br><span> Email: </span><input type="text" name="email" /><br><span> Phone: </span><input type="text" name="phone" /><br><span> Address: </span><input type="text" name="address" /><br><span> Owner Name: </span><input type="text" name="owner_name" /><br><input type="submit" value="Add New" /></form>');
     }
 
+    function showExports(v_id){
+
+    	fetch("http://localhost:5000/api/vendors/"+v_id)
+			.then((value) => value.json())
+			.then((valueJSON)=> {
+				console.log(valueJSON);
+				let output = valueJSON[0]["COUNT(*)"] +" Export Orders Were Made with this Vendor";
+
+			var span = '<header> Export Info </header> <br> <p>' + output + '</p>';
+
+			swal(span);
+			});
+
+
+    }
+
 </script>
-<h2> List of Vendor </h2>
+<h2 style="text-align:center; padding-bottom: 30px; "> List of Vendor </h2>
+
+<p>
+	<a onclick="addNew()" style="margin-left:43%;border: 2px solid blue; color:purple; padding:10px; cursor: pointer;"> Add New Vendor </a>
+</p>
 
 <table cellspacing="20px" style="text-align:center">
 	<thead>
@@ -28,7 +48,7 @@
 			<td>Owner</td>
 			<td>Phone</td>
 			<td>Address</td>
-			<td>Sum Money </td>
+			<td style="width: 80px;">Total Spent</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -48,7 +68,6 @@
 				{% endfor %}
 				<td> 0 </td>
 				{% if user.Salary%}
-				<td><button onclick="addNew()">Add</button></td>
 				<td><button onclick="modify({{vendor.V_ID}})"> Modify </button></td>
 				<td>
 					<form method="POST" action="/delvendor">
@@ -56,7 +75,7 @@
 						<input type="submit" value="Delete"/>
 					</form>
 				</td>
-				<td><button  onclick="analize({{vendor.V_ID}});">Exports</button></td>
+				<td><button  onclick="showExports({{vendor.V_ID}})">Exports</button></td>
 
 				{% endif %}
 				{% for export in list_order %}
@@ -74,18 +93,6 @@
 		{% endfor %}
 	</tbody>
 </table>
-
-<script type="text/javascript">
-	function analize(v_id){
-		fetch("http://localhost:5000/api/vendors/"+v_id)
-			.then((value) => value.json())
-			.then((valueJSON)=> {
-				console.log(valueJSON);
-				let output = valueJSON[0]["COUNT(*)"] +" Export Order Was Made with this Vendor";
-				confirm(output);
-			});
-	}
-</script>
 
 
 {% endblock body %}

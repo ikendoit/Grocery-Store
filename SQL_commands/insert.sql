@@ -97,21 +97,6 @@ INSERT INTO Products VALUES(
 INSERT INTO Products VALUES(
 5, 25, 5, 115, 'Package of Paper', 35
 );
-INSERT INTO Products VALUES(
-6, 1, 3, 63, 'Pants', 15
-);
-INSERT INTO Products VALUES(
-7, 9, 2, 10, 'Tablet', 115
-);
-INSERT INTO Products VALUES(
-8, 2, 3, 35, 'Rope', 15
-);
-INSERT INTO Products VALUES(
-9, 8, 10, 11, 'Garbage Bin', 27
-);
-INSERT INTO Products VALUES(
-10, 3, 5, 245, 'Plates', 20
-);
 
 
 INSERT INTO Vendors VALUES(
@@ -163,21 +148,6 @@ INSERT INTO Order_Imports VALUES(
 INSERT INTO Order_Imports VALUES(
 5, 2, '2017/5/5', 15000.510
 );
-INSERT INTO Order_Imports VALUES(
-6, 2, '2017/5/6', 12564.864
-);
-INSERT INTO Order_Imports VALUES(
-7, 4, '2017/5/7', 30646.316
-);
-INSERT INTO Order_Imports VALUES(
-8, 4, '2017/5/8', 76321.645
-);
-INSERT INTO Order_Imports VALUES(
-9, 1, '2017/5/9', 16849.348
-);
-INSERT INTO Order_Imports VALUES(
-10, 3, '2017/5/10', 13154.035
-);
 
 
 INSERT INTO Import_Desc VALUES(
@@ -194,21 +164,6 @@ INSERT INTO Import_Desc VALUES(
 );
 INSERT INTO Import_Desc VALUES(
 5, 3, 11
-);
-INSERT INTO Import_Desc VALUES(
-6, 8, 12
-);
-INSERT INTO Import_Desc VALUES(
-7, 10, 22
-);
-INSERT INTO Import_Desc VALUES(
-8, 6, 10
-);
-INSERT INTO Import_Desc VALUES(
-9, 9, 3
-);
-INSERT INTO Import_Desc VALUES(
-10, 7, 2
 );
 
 
@@ -227,21 +182,6 @@ INSERT INTO Order_Exports VALUES(
 INSERT INTO Order_Exports VALUES(
 5, 1, '2016/4/7', 23000.233
 );
-INSERT INTO Order_Exports VALUES(
-6, 3, '2016/4/10', 36046.233
-);
-INSERT INTO Order_Exports VALUES(
-7, 5, '2017/4/13', 13458.322
-);
-INSERT INTO Order_Exports VALUES(
-8, 5, '2016/4/14', 10025.346
-);
-INSERT INTO Order_Exports VALUES(
-9, 4,'2016/4/11', 62145.312
-);
-INSERT INTO Order_Exports VALUES(
-10, 2, '2016/4/12', 6869.233
-);
 
 
 INSERT INTO Export_Desc VALUES(
@@ -258,21 +198,6 @@ INSERT INTO Export_Desc VALUES(
 );
 INSERT INTO Export_Desc VALUES(
 5, 3, 70
-);
-INSERT INTO Export_Desc VALUES(
-6, 9, 4
-);
-INSERT INTO Export_Desc VALUES(
-7, 7, 6
-);
-INSERT INTO Export_Desc VALUES(
-8, 8, 8
-);
-INSERT INTO Export_Desc VALUES(
-9, 10, 7
-);
-INSERT INTO Export_Desc VALUES(
-10, 6, 16
 );
 
 

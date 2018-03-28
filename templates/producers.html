@@ -10,35 +10,47 @@
 		swal('<form action="/addproducers" method="POST"<h3> Add New Producer </h3><br/><span> Name: </span><input type="text" name="name"><br><span> Email: </span><input type="text" name="email" /><br><span> Phone: </span><input type="text" name="phone" /><br><span> Address: </span><input type="text" name="address" /><br><span> Owner Name: </span><input type="text" name="owner_name" /><br><input type="submit" value="Add New" /></form> ');
 
 	}
-
 	
 	function modify(id){
 		swal('<form action="/modproducers" method="POST"><h3> Modify Producer by ID</h3><span> ID: </span><input type="text" name="id" /><br><span> Name: </span><input type="text" name="name" /><br><span> Email: </span><input type="text" name="email" /><br><span> Phone: </span><input type="text" name="phone" /><br><span> Address: </span><input type="text" name="address" /><br><span> Owner Name: </span><input type="text" name="owner_name" /><br><input type="submit" value="Add New" /></form> ');
 	}
+
+	function showImports(p_id){
+
+		fetch("http://localhost:5000/api/producers/"+p_id)
+			.then((value) => value.json())
+			.then((valueJSON)=> {
+				let output = valueJSON[0]["COUNT(*)"] +" Import Order Was Made with this Producer";
+
+				var span = '<header> Import Info </header> <br> <p>' + output + '</p>'
+
+				swal(span);
+
+			});
+
+
+	}
 </script>
 
-<h2> List of Producers </h2>
+<h2 style="text-align:center; padding-bottom: 30px;"> List of Producers </h2>
 <p>
-	<a onclick="addNew()" style="margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Add New Producer </a>
-	{% if user.Salary %}
-	<a onclick="modify(0)" style="margin-left:20%;border: 2px solid blue; color:purple; padding:10px;"> Modify Producer </a>
-	{% endif %}
+	<a onclick="addNew()" style="margin-left:43%;border: 2px solid blue; color:purple; padding:10px; cursor: pointer;"> Add New Producer </a>
 </p>
 <table cellspacing="20px" style="text-align:center">
 	<thead>
 		<tr>
 			<td>ID</td>
-			<td>Name</td>
+			<td id="name">Name</td>
 			<td>Email</td>
 			<td>Owner</td>
 			<td>Phone</td>
-			<td>Address</td>
-			<td>Total Avenue</td>
+			<td id="address">Address</td>
+			<td>Total Revenue</td>
 		</tr>
 	</thead>
 	<tbody>
 		{% for producer in list_party %}
-			<tr onclick="analize({{producer.P_ID}});">
+			<tr>
 				<td>{{producer.P_ID}}</td>
 				<td>{{producer.P_Name}}</td>  
 				<td>{{producer.Email}}</td>
@@ -48,6 +60,8 @@
 				{% for ministat in stat %}
 					{% if ministat.P_ID == producer.P_ID %}
 						<td> {{ministat.sum}}</td>
+					{% else %}
+						<td></td>
 					{% endif %}
 				{% endfor %}
 				{% if user.Salary%}
@@ -55,9 +69,10 @@
 					<td>
 						<form method="POST" action="/delproducer">
 							<input type="text" name="p_id" value={{producer.P_ID}} style="display:none"/>
-							<input type="submit" value="delete"/> 
+							<input type="submit" value="Delete"/>
 						</form>
 					</td>
+					<td><button onclick="showImports({{producer.P_ID}})">Imports #</button></td>
 				{% endif %}
 			</tr>
             {% for import in list_order %}
@@ -75,15 +90,5 @@
 		{% endfor %}
 	</tbody>
 </table>
-	
-<script type="text/javascript">
-	function analize(p_id){
-		fetch("http://localhost:5000/api/producers/"+p_id)
-			.then((value) => value.json())
-			.then((valueJSON)=> {
-				let output = valueJSON[0]["COUNT(*)"] +" Import Order Was Made with this Producer";
-				confirm(output);
-			});
-	}
-</script>
+
 {% endblock body %}

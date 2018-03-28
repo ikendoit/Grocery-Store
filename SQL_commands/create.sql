@@ -1,6 +1,5 @@
 create database grocery;
 use grocery;
-
 CREATE TABLE Products (
 SKU varchar(30), 
 Section_Num int, 

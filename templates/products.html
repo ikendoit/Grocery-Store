@@ -2,13 +2,14 @@
 
 {% block body %}
 
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/products.css')}}" />
+
 <h1 style="text-align:center"> Products Manager </h1>
 
 <h1> {{message}} </h1>
 
 <script>
 	function addNew(){
-	
 		swal('<form action="/addproduct" method="POST"><h2> Add new Product </h2><p>SKU: <input type="text" name="sku" /></p><p>Name: <input type="text" name="name" /></p><p>Price: <input type="text" name="price" /></p><p>Amount: <input type="text" name="amount" /></p><p>section: <input type="text" name="section" /></p><p>weight (g/item): <input type="text" name="weight" /></p><input type="submit" value="Add new Value" /></form>');
 	}
 
@@ -19,16 +20,39 @@
 	function modify(sku){
 		swal('<form action="/modproduct" method="POST" ><h2> Modify Product by SKU</h2><p>SKU: <input type="text" name="sku" value="'+sku+'"/></p><p>Name: <input type="text" name="name" /></p><p>Price: <input type="text" name="price" /></p><p>Amount: <input type="text" name="amount" /></p><p>section: <input type="text" name="section" /></p><p>weight (g/item): <input type="text" name="weight" /></p><input type="submit" value="Modify" /></form> ');
 	}
+
+	function showExports(sku){
+
+		fetch("http://35.182.249.219:5000/api/products/"+sku)
+				.then((value) => value.json())
+				.then((valueJSON)=> {
+					let data = valueJSON[0];
+					let output = "Name: "+data["Product_Name"] +
+								"Price: "+data["Price"]+"$\n"+
+								"Section: "+data["Section_Num"]+ "\n"+
+								"Weight: "+data["Weight"]+" grams";
+
+					var span = document.createElement("span");
+					span.innerHTML = "Name: "+data["Product_Name"] +
+								"Price: "+data["Price"]+"$\n"+
+								"Section: "+data["Section_Num"]+ "\n"+
+								"Weight: "+data["Weight"]+" grams"
+
+					var hello = '<header> Products Info </header> <br> <span> Name: ' + data["Product_Name"] + '</span> <br> <span> Price: ' + data["Price"] + '</span> <br> <span> Section: ' + data["Section_Num"] + '</span> <br> <span> Weight: ' + data["Weight"] + ' grams';
+
+					swal(hello);
+
+				});
+
+	}
+
 </script>
 
-<h1 style="text-align:center; "> List of Products </h1>
+<h2 style="text-align:center; padding-bottom: 30px; "> List of Products </h2>
 
 <p>
-	<a onclick="addNew()" style="margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Add New Product </a>
-	{% if user.Salary %}
-	<a onclick="modify(0)" style="margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Modify Product </a>
-	{% endif %}
-	<a onclick="quantify()" style="margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Quantify Product  </a>
+	<a onclick="addNew()" style="cursor: pointer; margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Add New Product </a>
+	<a onclick="quantify()" style="cursor: pointer; margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Quantify Product  </a>
 </p>
 
 <table cellspacing="20px" style="text-align:center">
@@ -37,12 +61,12 @@
 			<td>SKU</td>
 			<td>Name</td>
 			<td>Amount</td>
-			<td>section</td>
+			<td>Section</td>
 		</tr>
 	</thead>
 	<tbody>
 		{% for product in products %}
-			<tr onclick="analize({{product.SKU}});">
+			<tr">
 				<td>{{product.SKU}}</td>
 				<td>{{product.Product_Name}}</td>  
 				<td>{{product.Amount}}</td>
@@ -52,9 +76,10 @@
 					<td>
 						<form method="POST" action="/delproduct">
 							<input type="text" name="sku" value={{product.SKU}} style="display:none"/>
-							<input type="submit" value="delete"/> 
+							<input type="submit" value="Delete"/>
 						</form>
 					</td>
+					<td><button onclick="showExports({{product.SKU}})">Exports</button></td>
 				{% endif %}
 			</tr>
 		{% endfor %}
@@ -63,16 +88,8 @@
 
 
 
-<div style="width:35%; float:left; background-color:lightgreen; padding:10px">
-	<h2> select your products </h2>
-	<p>SKU: <input type="text" id="sku" /></p>
-	<p>Name: <input type="checkBox" id="name" /></p>
-	<p>Price: <input type="checkBox" id="price" /></p>
-	<p>Amount: <input type="checkBox" id="amount" /></p>
-	<p>section: <input type="checkBox" id="section" /></p>
-	<p>weight (g/item): <input type="checkBox" id="weight" /></p>
-    <button type="button" onclick="goProjection();" style="width:300px; height:50px"> Project Product </button> 
-</div>
+<form style="width:35%; float:left; background-color:lightgreen; padding:10px"><h2> select your products </h2><p>SKU: <input type="text" id="sku" /></p><p>Name: <input type="checkBox" id="name" /></p><p>Price: <input type="checkBox" id="price" /></p><p>Amount: <input type="checkBox" id="amount" /></p><p>section: <input type="checkBox" id="section" /></p><p>weight (g/item): <input type="checkBox" id="weight" /></p>
+    <p><button onclick="goProjection();" style="width:300px; height:50px"> Project Product </button> </p></form>
 <h2><div id="projection"> </div></h2>
 
 <script> 
@@ -98,6 +115,7 @@
             "Section_Num":document.getElementById("section").checked,
             "Weight":document.getElementById("weight").checked,
         };
+
 		fetch("http://localhost:5000/api/product/", {
             method:"POST",
             body: JSON.stringify(query)
@@ -112,6 +130,6 @@
                 document.getElementById("projection").innerHTML = result;
             });
     }
-</script>
+</script defer>
 
 {% endblock %}
