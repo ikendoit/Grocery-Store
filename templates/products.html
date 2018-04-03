@@ -7,23 +7,80 @@
 <h1 style="text-align:center"> Products Manager </h1>
 
 <h1> {{message}} </h1>
+<style>
+	
+	input[type='checkbox'] {
+        width:30px;
+        height:30px;
+        background:white;
+        border-radius:5px;
+        border:2px solid #555;
+    }
+
+    input[type='checkbox']:checked {
+        background: #abd;
+    }
+
+	input[type='text'] {
+	    /*	width:30px;*/
+        height:30px;
+        background:white;
+        border-radius:5px;
+        border:2px solid #555;
+    }
+    
+    button {
+		background-color: #4CAF50; /* Green */
+		border: none;
+		color: white;
+		padding: 15px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+	}
+
+</style>
 
 <script>
 	function addNew(){
-		swal('<form action="/addproduct" method="POST"><h2> Add new Product </h2><p>SKU: <input type="text" name="sku" /></p><p>Name: <input type="text" name="name" /></p><p>Price: <input type="text" name="price" /></p><p>Amount: <input type="text" name="amount" /></p><p>section: <input type="text" name="section" /></p><p>weight (g/item): <input type="text" name="weight" /></p><input type="submit" value="Add new Value" /></form>');
+		swal('<form action="/addproduct" method="POST">'+
+			 '<h2> Add New Product </h2>'+
+			 '<p>SKU: <input type="text" name="sku" /></p>'+
+			 '<p>Name: <input type="text" name="name" /></p>'+
+			 '<p>Price: <input type="text" name="price" /></p>'+
+			 '<p>Amount: <input type="text" name="amount" /></p>'+
+			 '<p>Section: <input type="text" name="section" /></p>'+
+			 '<p>Weight (g/item): <input type="text" name="weight" /></p>'+
+			 '<input type="submit" style = "background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 32px;" value="Add New Product" />'+
+			 '</form>');
 	}
-
+	
 	function quantify(){
-		swal('<form action="/quanproduct" method="POST"><h2> Quantify Product by SKU</h2><p>SKU: <input type="text" name="sku" /></p><p>Amount: <input type="text" name="amount" /></p><input type="submit" value="quantify" /> </form> ');
+		swal('<form action="/quanproduct" method="POST">'+
+			 '<h2> Quantify Product by SKU</h2>'+
+			 '<p>SKU: <input type="text" name="sku" /></p>'+
+			 '<p>Amount: <input type="text" name="amount" /></p>'+
+			 '<input type="submit" value="quantify" />'+
+			 '</form>');
 	}
-
+	
 	function modify(sku){
-		swal('<form action="/modproduct" method="POST" ><h2> Modify Product by SKU</h2><p>SKU: <input type="text" name="sku" value="'+sku+'"/></p><p>Name: <input type="text" name="name" /></p><p>Price: <input type="text" name="price" /></p><p>Amount: <input type="text" name="amount" /></p><p>section: <input type="text" name="section" /></p><p>weight (g/item): <input type="text" name="weight" /></p><input type="submit" value="Modify" /></form> ');
+		swal('<form action="/modproduct" method="POST" >'+
+			 '<h2> Modify Product by SKU</h2>'+
+			 '<p>SKU: <input type="text" name="sku" value="'+sku+'"/></p>'+
+			 '<p>Name: <input type="text" name="name" /></p>'+
+			 '<p>Price: <input type="text" name="price" /></p>'+
+			 '<p>Amount: <input type="text" name="amount" /></p>'+
+			 '<p>Section: <input type="text" name="section" /></p>'+
+			 '<p>Weight (g/item): <input type="text" name="weight" /></p>'+
+			 '<input type="submit" value="Modify" />'+
+			 '</form>');
 	}
-
 	function showExports(sku){
 
-		fetch("http://35.182.249.219:5000/api/products/"+sku)
+		// fetch("http://35.182.249.219:5000/api/products/"+sku)
+		fetch("http://localhost:5000/api/products/"+sku)
 				.then((value) => value.json())
 				.then((valueJSON)=> {
 					let data = valueJSON[0];
@@ -52,10 +109,13 @@
 
 <p>
 	<a onclick="addNew()" style="cursor: pointer; margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Add New Product </a>
+	{% if user.Salary %}
+		<a style="cursor: pointer; margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Modify New Product </a>
+	{% endif %}
 	<a onclick="quantify()" style="cursor: pointer; margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Quantify Product  </a>
 </p>
 
-<table cellspacing="20px" style="text-align:center">
+<table cellspacing="20px" style="text-align:center; float:left;">
 	<thead>
 		<tr>
 			<td>SKU</td>
@@ -67,19 +127,19 @@
 	<tbody>
 		{% for product in products %}
 			<tr">
-				<td>{{product.SKU}}</td>
-				<td>{{product.Product_Name}}</td>  
-				<td>{{product.Amount}}</td>
-				<td>{{product.Section_Num}}</td>
-				{% if user.Salary%}
-					<td><button onclick="modify({{product.SKU}})"> Modify </button></td>
+				<td>{{ product.SKU }}</td>
+				<td>{{ product.Product_Name }}</td>  
+				<td>{{ product.Amount }}</td>
+				<td>{{ product.Section_Num }}</td>
+				{% if user.Salary %}
+					<td><button onclick="modify({{ product.SKU }})"> Modify </button></td>
 					<td>
 						<form method="POST" action="/delproduct">
 							<input type="text" name="sku" value={{product.SKU}} style="display:none"/>
-							<input type="submit" value="Delete"/>
+							<input type="submit" style="background-color: red; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;" value="Delete"/>
 						</form>
 					</td>
-					<td><button onclick="showExports({{product.SKU}})">Exports</button></td>
+					<td><button onclick="showExports({{ product.SKU }})">Exports</button></td>
 				{% endif %}
 			</tr>
 		{% endfor %}
@@ -88,9 +148,21 @@
 
 
 
-<form style="width:35%; float:left; background-color:lightgreen; padding:10px"><h2> select your products </h2><p>SKU: <input type="text" id="sku" /></p><p>Name: <input type="checkBox" id="name" /></p><p>Price: <input type="checkBox" id="price" /></p><p>Amount: <input type="checkBox" id="amount" /></p><p>section: <input type="checkBox" id="section" /></p><p>weight (g/item): <input type="checkBox" id="weight" /></p>
-    <p><button onclick="goProjection();" style="width:300px; height:50px"> Project Product </button> </p></form>
-<h2><div id="projection"> </div></h2>
+<form style="width:35%; float:left; background-color:lightgreen; padding:10px">
+	<h2> Select your Products </h2>
+	<p>SKU: <input type="text" id="sku" /></p>
+	
+	<p>Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        <input type="checkbox" id="name"  /></p>
+	<p>Price:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" id="price" /></p>
+	<p>Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        <input type="checkbox" id="amount"      /></p>
+	<p>Section:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                 <input type="checkbox" id="section"     /></p>
+	<p>Weight (g/item):&nbsp; <input type="checkbox" id="weight"  /></p>
+    <p><button onclick="goProjection();" style="width:300px; height:50px"> Project Product </button> </p> 
+
+</form>
+<h2>
+	<div id="projection" style="float:left;"></div>
+</h2>
 
 <script> 
 	function analize(sku){
@@ -105,7 +177,6 @@
 				confirm(output);
 			});
 	}
-
     function goProjection(){
         var query = {
             "SKU":document.getElementById("sku").value,
@@ -115,7 +186,6 @@
             "Section_Num":document.getElementById("section").checked,
             "Weight":document.getElementById("weight").checked,
         };
-
 		fetch("http://localhost:5000/api/product/", {
             method:"POST",
             body: JSON.stringify(query)
@@ -133,3 +203,32 @@
 </script defer>
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+	function addNew(){
+		swal('<form action="/addproduct" method="POST"><h2> Add new Product </h2><p>SKU: <input type="text" name="sku" /></p><p>Name: <input type="text" name="name" /></p><p>Price: <input type="text" name="price" /></p><p>Amount: <input type="text" name="amount" /></p><p>section: <input type="text" name="section" /></p><p>weight (g/item): <input type="text" name="weight" /></p><input type="submit" value="Add new Value" /></form>');
+	}
+	function quantify(){
+		swal('<form action="/quanproduct" method="POST"><h2> Quantify Product by SKU</h2><p>SKU: <input type="text" name="sku" /></p><p>Amount: <input type="text" name="amount" /></p><input type="submit" value="quantify" /> </form> ');
+	}
+	function modify(sku){
+		swal('<form action="/modproduct" method="POST" ><h2> Modify Product by SKU</h2><p>SKU: <input type="text" name="sku" value="'+sku+'"/></p><p>Name: <input type="text" name="name" /></p><p>Price: <input type="text" name="price" /></p><p>Amount: <input type="text" name="amount" /></p><p>section: <input type="text" name="section" /></p><p>weight (g/item): <input type="text" name="weight" /></p><input type="submit" value="Modify" /></form> ');
+	}
+*/
+	

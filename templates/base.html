@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
+<head>
 		<meta charset="utf-8">
 	 	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/base.css')}}" />
 	 	<script type="text/javascript" src="{{url_for('static', filename='js/sweetalert_2.js')}}"> </script>
@@ -9,120 +9,146 @@
 		<title> Easy Warehouse Management Ltd.</title>
 
 		<div style="position:fixed; top:0;" >
-				{% if not user %}
-			<script type="text/javascript" defer>
-                if (document.location.href.indexOf("login")<0)
-                    document.location.href="/login"; 
-            </script>
-                {% endif %}
+			{% if not user %}
+				<script type="text/javascript" defer>
+	        if (document.location.href.indexOf("login")<0)
+	          document.location.href="/login"; 
+    		</script>
+      {% endif %}
 		</div>
-	</head>
 
-	<body>
-		<div class="header">
+		<style>
+		body {
+		    font-family: "Arial, Helvetica, sans-serif";
+		}
+		*{
+			box-sizing: border-box;
+		}
+		.sidenav {
+		    height: 100%;
+		    width: 275px;
+		    position: fixed;
+		    z-index: 1;
+		    top: 0;
+		    left: 0;
+		    background-color: #87ceeb;
+		    overflow-x: hidden;
+		    padding-top: 10px;
+		    transition: 0.5s;
+		}
+		
+		.sidenav a {
+		    padding: 6px 6px 6px 6px;
+		    text-decoration: none;
+		    font-size: 20px;
+		    color: #f1f1f1;
+		    display: block;
+		}
+/*
+		.sidenav nav-item:form{
+			padding-top: : 0px;
+			padding-left: 0px;
+			padding-left: 0px;
+			padding-bottom: 0px; 
+		}
+*/
+		.sidenav a:hover {
+		    color: #f1f1f1;
+		}
+
+		.main-content {
+		    margin-left: 275px; /* Same as the width of the sidenav */
+		    font-size: 28px;  /*Increased text to enable scrolling */
+		    /*padding: 0px 20px;*/
+		    padding-left: 50px;
+		}
+	</style>
+
+</head>
+
+<body>
+		<div class="sidenav">
 			<a href="{{ url_for('index') }}"><h2>Easy Warehouse Management Ltd.</h2></a>
+			<hr style="border-top=1px solid #000000;"/>
 			<ul class="menu-header" >
-				<li class="nav-item">
-					<a  href="{{ url_for('index') }}"><span>Home</span></a>
-				</li>
-				<li class="nav-item">
-					<a  href="{{ url_for('profile') }}"><span>My Profile</span></a>
-				</li>
-				<li class="nav-item" onclick="open_manage();">
-					<a><span>Manage Business &#9662</span></a>
-				</li>
+				<li class="nav-item"><a  href="{{ url_for('index') }}"><span>Home</span></a></li>
+				<li class="nav-item"><a  href="{{ url_for('profile') }}"><span>My Profile</span></a></li>
+				<li class="nav-item" onclick="open_manage();"><a><span>Manage Business &#9662</span></a></li>
 				<div id="menu-main">
-					<li class="nav-item">
-						<a href="{{ url_for('statistics') }}">&#9656 Statistics</a>
-					</li>
-					<li class="nav-item">
-						<a href="{{ url_for('products') }}">&#9656 Product</a>
-					</li>
-					<li class="nav-item" onclick="open_sub();">
-						<a>&#9656 Clients &#9662</a>
-					</li>
-					<div id="menu-sub-1" >
-						<li class="nav-item">
-							<a href="{{ url_for('vendors') }}">&#9657 Vendors</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{ url_for('producers') }}">&#9657 Producers</a>
-						</li>
+					{% if user.Salary %} 
+						<li class="nav-item"><a href="{{ url_for('statistics') }}">&#9656 Statistics</a></li>
+					{% endif %}
+					<li class="nav-item"><a href="{{ url_for('products') }}">&#9656 Product</a></li>
+					<li class="nav-item" onclick="open_sub();"><a>&#9656 Clients &#9662</a></li>
+					<div id="menu-sub-1">
+						<li class="nav-item"><a href="{{ url_for('vendors') }}">&#9657 Vendors</a></li>
+						<li class="nav-item"><a href="{{ url_for('producers') }}">&#9657 Producers</a></li>
 					</div>
-					<li class="nav-item" onclick="open_sub_2();"> 
-						<a>&#9656 Administration &#9662</a>
-					</li>
-					<div id="menu-sub-2" >
-						<li class="nav-item">
-							<a href="{{ url_for('workers') }}">&#9657 Workers</a>
-						</li>
-
-						<li class="nav-item">
-							<a href="{{ url_for('managers') }}">&#9657 Managers</a>
-						</li>
-
-						{% if user.Salary %}
-						<li class="nav-item">
-							<a href="{{ url_for('admin') }}">&#9656 General</a>
-						</li>
-						{% endif %}
-					</div>
+					{% if user.Salary %}
+						<li class="nav-item" onclick="open_sub_2();"><a>&#9656 Administration &#9662</a></li>
+						<div id="menu-sub-2" >
+							<li class="nav-item"><a href="{{ url_for('workers') }}">&#9657 Workers</a></li>
+							<li class="nav-item"><a href="{{ url_for('managers') }}">&#9657 Managers</a></li>
+							<li class="nav-item"><a href="{{ url_for('admin') }}">&#9656 General</a></li>
+						</div>
+					{% endif %}
 				</div>
 
+				<li class="nav-item"><a href="{{ url_for('contact') }}"><span>Contact</span></a></li>
+				<li class="nav-item"><a href="{{ url_for('about') }}"><span>About</span></a></li>
 				<li class="nav-item">
-					<a href="{{ url_for('contact') }}"><span>Contact</span></a>
-				</li>
-				<li class="nav-item">
-					<a href="{{ url_for('about') }}"><span>About</span></a>
-				</li>
-				<li class="nav-item">
-					<form method="POST" action="/logout" id="form-logout" >
-						<input class="logout-button" type="submit" name="logout" value=" Log Out" style="font-size: 23px"/>
-					</form>
+						<form method="POST" action="/logout" id="form-logout"><!--  style="width:100%; height:100%;"> -->
+							<input class="logout-button" type="submit" name="logout" value=" Log Out" style="width:100%; height:100%; font-size: 23px;"/>
+						</form>
 				</li>
 			</ul>
-        </div>
+    </div>
 
-		<div class="main-content">
+    <div class="main-content">
 			{% block body %} 
 			{% endblock %}
 		</div>
+		
 		<footer>
-            <script type="text/javascript"> 
- 
-                function open_manage(){
-                    let type = document.getElementById("menu-main").style.display;
-                    if (type == "none" || type == ""){
-                        document.getElementById("menu-main").style.display="block";
-                    } else {
-                        document.getElementById("menu-main").style.display="none";
-                    }
-                }
+				<script type="text/javascript"> 
+						function open_manage(){
+								let type = document.getElementById("menu-main").style.display;
+								if (type == "none" || type == ""){
+										document.getElementById("menu-main").style.display="block";
+								} 
+								else {
+										document.getElementById("menu-sub-1").style.display="none";
+										document.getElementById("menu-sub-2").style.display="none";
+										document.getElementById("menu-main").style.display="none";
+								}
+						}
+						function open_sub(){
+								let type = document.getElementById("menu-sub-1").style.display;
+								if (type == "none" || type == "" || type == undefined){
+										document.getElementById("menu-sub-1").style.display="block";
+										document.getElementById("menu-sub-2").style.display="none";
+								} 
+								else {
+										document.getElementById("menu-sub-1").style.display="none";
+								}
+						}               
+						function open_sub_2(){
+								let type = document.getElementById("menu-sub-2").style.display;
+								if (type == "none" || type == "" || type == undefined){
+										document.getElementById("menu-sub-1").style.display="none";
+										document.getElementById("menu-sub-2").style.display="block";
+								} 
+								else {
+										document.getElementById("menu-sub-2").style.display="none";
+								}
+						}               
+						function test_api(){
+								fetch("/api/Products").post({"checking":123});;
+						}
+				</script defer>
+		</footer>     
+</body>	
 
-                function open_sub(){
-                    let type = document.getElementById("menu-sub-1").style.display;
-                    if (type == "none" || type == "" || type == undefined){
-						document.getElementById("menu-sub-1").style.display="block";
-                    } else {
-                        document.getElementById("menu-sub-1").style.display="none";
-                    }
-                }               
+</html> 
 
-                function open_sub_2(){
-                    let type = document.getElementById("menu-sub-2").style.display;
-                    if (type == "none" || type == "" || type == undefined){
-                        document.getElementById("menu-sub-2").style.display="block";
-                    } else {
-                        document.getElementById("menu-sub-2").style.display="none";
-                    }
-                }               
 
-				function test_api(){
-					fetch("/api/Products")
-						.post({"checking":123});;
-				}
-            </script defer>
-		</footer>
-	</body>
-
-</html>

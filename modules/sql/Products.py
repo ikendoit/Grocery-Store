@@ -34,7 +34,8 @@ def query_props(req):
 # query all products info
 #    @return convert( : list of dicts
 def query_all_products_info():
-    return utilities.query("SELECT * from Products")
+    query = "SELECT * from Products ORDER BY LENGTH(SKU)"
+    return utilities.query(query)
 
 
 # query to check what product a staff quantified

@@ -298,6 +298,15 @@ def mod_staff():
 
     return redirect(url_for("admin")) 
 
+@app.route("/modprofile", methods=["POST"])
+def mod_profile():
+    form = request.form
+    try:
+        Manager.mod_profile(form)
+    except Exception as e:
+        print(e)
+    return redirect(url_for("profile"))
+    
 #**************************************APIS*******************************************
 
 

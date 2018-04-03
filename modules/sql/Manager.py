@@ -157,3 +157,31 @@ class Manager(Staff):
                     query = query + " Owner_Name='" + form[info] + "' "
 
         return utilities.execute("UPDATE Vendors set " + query + " where V_ID=" + form["id"])
+
+    def mod_profile(self, form):
+        query = ""
+        for info in form:
+            if form[info] != "" :
+                if info == "Staff_ID":
+                    query = query + " Staff_ID ='" + form[info] + "' "
+                if info == "Name":
+                    query = query + " Name=" + form[info]
+                if info == "Address":
+                    query = query + " Address=" + form[info]
+                if info == "PhoneNum":
+                    query = query + " PhoneNum=" + form[info]
+        return utilities.execute("UPDATE Staff set " + query + " where Staff_ID=" + form["Staff_ID"])
+
+# CREATE TABLE Staff (
+# Staff_ID int AUTO_INCREMENT, 
+# Name varchar(50) NOT NULL, 
+# sSin varchar(20) NOT NULL UNIQUE, 
+# Address varchar(50) NOT NULL, 
+# Birthdate date NOT NULL, 
+# PhoneNum varchar(15) NOT NULL UNIQUE, 
+# Email varchar(30) NOT NULL UNIQUE, 
+# Bank_Info varchar(30) NOT NULL UNIQUE,
+# Date_info_Start date NOT NULL, 
+# PRIMARY KEY(Staff_ID)
+# );
+

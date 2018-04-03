@@ -48,7 +48,7 @@
 	</table>
 </div>
 
-<div style="float:right; width:35%">
+<div style="float:left; width:35%">
 	<h2>Popular Items among Vendors </h2>
 	<table cellspacing="10px">
 		<thead>
@@ -68,7 +68,7 @@
 	</table>
 </div>
 
-<div style="float:left; width:35%">
+<div style="float:right; width:35%">
 	<h2>Vendors Ranked by Revenue </h2>
 	<table cellspacing="10px">
 		<thead>
@@ -81,6 +81,28 @@
 			{% for ven in vendors %}
 				<tr>
 					<td>{{ven.V_ID}} </td>
+					<td>{{ven.sum}}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+<div style="float:left; width:35%">
+	<h2> # of Vendor Orders and Total Revenue per day</h2>
+	<table cellspacing="10px">
+		<thead>
+			<tr>
+				<td>Date</td>
+				<td>Amount of Vendors</td>
+				<td>Money Obtained ($)</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for ven in num_vendors %}
+				<tr>
+					<td>{{ven.Date_info}} </td>
+					<td>{{ven.num_vens}} </td>
 					<td>{{ven.sum}}</td>
 				</tr>
 			{% endfor %}
@@ -110,27 +132,6 @@
 	</table>
 </div>
 
-<div style="float:left; width:35%">
-	<h2> # of Vendor Orders and Total Revenue per day</h2>
-	<table cellspacing="10px">
-		<thead>
-			<tr>
-				<td>Date</td>
-				<td>Amount of Vendors</td>
-				<td>Money Obtained ($)</td>
-			</tr>
-		</thead>
-		<tbody>
-			{% for ven in num_vendors %}
-				<tr>
-					<td>{{ven.Date_info}} </td>
-					<td>{{ven.num_vens}} </td>
-					<td>{{ven.sum}}</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-</div>
 
 <script type="text/javascript">
 	//not needed, can change

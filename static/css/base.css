@@ -36,6 +36,7 @@
 	td {
 		text-align:center;
 	}
+    
 
 /* END GENERAL */
 
@@ -122,8 +123,16 @@
       background-color:#87ceeb;
     }
 
+    .menu-header li .form {
+        padding-bottom: 0px;
+        padding-right: 0;
+        margin-right: 0;
+        margin-left: 0;
+        padding-left: 0;
+        border: none;
+    }
     .menu-header li {
-        padding-bottom: 20px;
+        padding-bottom: 10px;
         padding-right: 0;
         margin-right: 0;
         margin-left: 0;
@@ -140,21 +149,18 @@
     }
 
     #menu-sub-2 li{
-
         padding-left: 40px;
         width: 86%;
-
     }
 
     #menu-sub-1 li{
-
         padding-left: 40px;
         width: 86%;
-
     }
 
     .logout-button{
-
+        width: 100%;
+        height:100%;
         background-color:#87ceeb;
         border: none;
         cursor: pointer;

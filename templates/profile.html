@@ -1,4 +1,18 @@
 {% extends "base.html" -%}
+
+<script>
+	function modUser(user){
+		swal('<form action="/modprofile" method="POST" >'+
+			 '<h2> Modify Product by SKU</h2>'+
+			 '<p>Name: <input type="text" name="user.Name" /></p>'+
+			 '<p>Address: <input type="text" name="user.Address" /></p>'+
+			 '<p>Phone: <input type="text" name="user.PhoneNum" /></p>'+
+			 '<input type="submit" value="Modify" />'+
+			 '</form>');
+	}
+</script>
+
+
 {% block body %}
 
 	<h1 style="text-align:center"> User Page </h1>
@@ -10,7 +24,9 @@
     <p> Phone : {{user.PhoneNum}}</p>
     <p> Date Start: {{user.Date_info_Start}}</p>
     <p> Is Manager : {{user.Salary != None }} </p>
-    
+    <p>
+		<a onclick="modUser({{user}})" style="cursor: pointer; margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Modify User Profile</a>
+	</p>
 
 {% endblock body %}
 

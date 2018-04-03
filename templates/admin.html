@@ -11,11 +11,30 @@
 <script>
 
     function addNew(){
-        swal('<form action="/addstaff" method="POST" ><h2> Add new Worker </h2><p>Name: <input type="text" name="name" /></p><p>SIN: <input type="text" name="sin" /></p><p>Address: <input type="text" name="address" /></p><p>BirthDate: <input type="text" name="birthdate" /></p><p>Phone: <input type="text" name="phone" /></p><p>Email: <input type="text" name="email" /></p><p>Bank Info: <input type="text" name="bank" /></p><input type="submit" value="Add new Worker" /></form> ');
+        swal('<form action="/addstaff" method="POST" >'+
+             '<h2> Add new Worker </h2>'+
+             '<p>Name: <input type= "text" name="name" /></p>'+
+             '<p>SIN: <input type="text" name="sin" /></p>'+
+             '<p>Address: <input type="text" name="address" /></p>'+
+             '<p>BirthDate: <input type="text" name="birthdate" /></p>'+
+             '<p>Phone: <input type="text" name="phone" /></p>'+
+             '<p>Email: <input type="text" name="email" /></p>'+
+             '<p>Bank Info: <input type="text" name="bank" /></p>'+
+             '<input type="submit" value="Add new Worker" />'+
+             '</form> ');
     }
 
     function modify(id){
-        swal('<form action="/modstaff" method="POST"><h2> Modify Staff</h2><p>SKU: <input type="text" name="staff_id" value="'+id+'" /></p><p>Name: <input type="text" name="name" /></p><p>Price: <input type="text" name="price" /></p><p>Amount: <input type="text" name="amount" /></p><p>section: <input type="text" name="section" /></p><p>weight (g/item): <input type="text" name="weight" /></p><input type="submit" value="Modify" /></form> ');
+        swal('<form action="/modstaff" method="POST">'+
+             '<h2> Modify Staff</h2>'+
+             '<p>SKU: <input type="text" name="staff_id" value="'+id+'" /></p>'+
+             '<p>Name: <input type="text" name="name" /></p>'+
+             '<p>Price: <input type="text" name="price" /></p>'+
+             '<p>Amount: <input type="text" name="amount" /></p>'+
+             '<p>Section: <input type="text" name="section" /></p>'+
+             '<p>Weight (g/item): <input type="text" name="weight" /></p>'+
+             '<input type="submit" value="Modify" />'+
+             '</form> ');
 
 </script>
 
