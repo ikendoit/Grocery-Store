@@ -276,6 +276,42 @@ INSERT INTO Export_Desc VALUES(
 INSERT INTO Export_Desc VALUES(
 10, 6, 16
 );
+INSERT INTO Export_Desc VALUES(
+10, 1, 26
+);
+INSERT INTO Export_Desc VALUES(
+10, 3, 16
+);
+INSERT INTO Export_Desc VALUES(
+10, 2, 46
+);
+INSERT INTO Export_Desc VALUES(
+10, 4, 46
+);
+
+INSERT INTO Export_Desc VALUES(
+10, 5, 6
+);
+
+INSERT INTO Export_Desc VALUES(
+10, 7, 1
+);
+
+INSERT INTO Export_Desc VALUES(
+10, 8, 16
+);
+
+INSERT INTO Export_Desc VALUES(
+10, 9, 16
+);
+
+INSERT INTO Export_Desc VALUES(
+10, 10,12 
+);
+
+INSERT INTO Export_Desc VALUES(
+10, 6, 16
+);
 
 INSERT INTO Quantify VALUES(
 1, '2017/3/1', 1

@@ -143,7 +143,8 @@ def statistics():
         prod_vendors = Vendors.query_popular_vendor();
         num_producers = Producers.query_distinct_producer();
         num_vendors = Vendors.query_distinct_vendor();
-
+        bought_all = Products.query_all_purchased()
+        export_to_all = Products.query_product_export_all()
     except Exception as e:
         print(e)
 
@@ -154,7 +155,9 @@ def statistics():
                            prod_producers = prod_producers,
                            prod_vendors = prod_vendors,
                            num_producers = num_producers,
-                           num_vendors = num_vendors)
+                           num_vendors = num_vendors,
+                           bought_all=bought_all,
+                           export_to_all=export_to_all)
 
 
 #***********************INSERT OPERATIONS**********************************************

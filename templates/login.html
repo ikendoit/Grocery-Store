@@ -7,7 +7,7 @@
 				border: 3px solid #f1f1f1;
 		}
 
-		input[type=text]{
+		input[type=text], input[type=password]{
 		    width: 100%;
 		    padding: 12px 20px;
 		    margin: 8px 0;
@@ -65,7 +65,7 @@
 	    <input type="text" placeholder="Enter Full Name" name="name" required>
 
 	    <label for="id"><b>ID</b></label>
-	    <input type="text" placeholder="Enter ID" name="id" required>
+	    <input type="password" placeholder="Enter ID" name="id" required>
 
 	    <button type="submit" value="log in" >Login</button>
 	  </div>
@@ -80,7 +80,7 @@
 
 <form method="POST" action="/login" style="text-align:center;">
     <p> Full Name <input type="text" name="name" /> </p>
-    <p> ID <input type="text" name="id" /> </p>
+    <p> ID <input type="password" name="id" /> </p>
     <p> <input type="submit" value="log in" /> </p>
 </form>
  -->

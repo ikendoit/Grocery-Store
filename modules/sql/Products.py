@@ -38,6 +38,14 @@ def query_all_products_info():
     # query = "SELECT * from Products ORDER BY SKU"
     return utilities.query(query)
 
+#query V_ID that has purchased all products
+#   @return : list of V_ID
+def query_all_purchased():
+    return utilities.query("SELECT v.V_ID FROM Vendors v WHERE NOT EXISTS (SELECT * from Products p WHERE NOT EXISTS (SELECT * FROM Order_Exports o,Export_Desc i WHERE i.SKU=p.SKU AND o.Export_ID=i.Export_ID AND v.V_ID=o.V_ID));")
+
+#query SKU that has not been bought by any vendor
+def query_product_export_all():
+    return utilities.query("select p.SKU from Products p where not exists (select * from Vendors v where not exists (select * from Order_Exports o, Export_Desc e where o.V_ID = v.V_ID and e.SKU = p.SKU and o.Export_ID = e.Export_ID));")
 
 # query to check what product a staff quantified
 #    @params : none

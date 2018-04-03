@@ -8,40 +8,40 @@
 
 <h1> {{message}} </h1>
 
-<div style="float:left; width:40%">
-	<h2>Producers Ranked by Revenue</h2>
+<div style="float:left; width:35%">
+	<h2>Producers by Revenue </h2>
 	<table cellspacing="10px">
 		<thead>
 			<tr>
 				<td>P_ID</td>
-				<td>Amount ($)</td>
+				<td>Amount</td>
 			</tr>
 		</thead>
 		<tbody>
 			{% for prod in producers %}
 				<tr>
 					<td>{{prod.P_ID}} </td>
-					<td>{{prod.sum}}</td>
+					<td>{{prod.sum}} $ </td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 </div>
 
-<div style="float:right; width:40%">
-	<h2>Popular Items from Producers </h2>
+<div style="float:right; width:35%">
+	<h2>Popular from Producers </h2>
 	<table cellspacing="10px" >
 		<thead>
 			<tr>
 				<td>SKU</td>
-				<td>Amount (per item)</td>
+				<td>Amount</td>
 			</tr>
 		</thead>
 		<tbody>
 			{% for prod in prod_producers %}
 				<tr>
 					<td>{{prod.SKU}} </td>
-					<td>{{prod.sum}}</td>
+					<td>{{prod.sum}} (items)</td>
 				</tr>
 			{% endfor %}
 		</tbody>
@@ -50,7 +50,7 @@
 
 <div style="clear:both"> </div>
 
-<div style="float:left; width:40%">
+<div style="float:right; width:35%">
 	<h2>Popular among vendors </h2>
 	<table cellspacing="10px">
 		<thead>
@@ -70,57 +70,34 @@
 	</table>
 </div>
 
-<div style="float:right; width:40%">
-	<h2>Vendors Ranked by Revenue </h2>
+<div style="float:left; width:35%">
+	<h2>Vendors by Revenue </h2>
 	<table cellspacing="10px">
 		<thead>
 			<tr>
 				<td>V_ID</td>
-				<td>Amount ($)</td>
+				<td>Amount</td>
 			</tr>
 		</thead>
 		<tbody>
 			{% for ven in vendors %}
 				<tr>
 					<td>{{ven.V_ID}} </td>
-					<td>{{ven.sum}}</td>
+					<td>{{ven.sum}} $ </td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 </div>
 
-<div style="clear:both"> </div>
-<div style="float:left; width:40%">
+<div style="float:right; width:35%">
 	<h2> By Date: How many producers made order,and what is the total money spent</h2>
 	<table cellspacing="10px">
 		<thead>
 			<tr>
 				<td>Date</td>
-				<td>Amount of Vendors</td>
-				<td>Money Obtained ($)</td>
-			</tr>
-		</thead>
-		<tbody>
-			{% for ven in num_vendors %}
-				<tr>
-					<td>{{ven.Date_info}} </td>
-					<td>{{ven.num_vens}} </td>
-					<td>{{ven.sum}}</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-</div>
-
-<div style="float:right; width:40%">
-	<h2> # of Producer Orders and Total Cost per day</h2>
-	<table cellspacing="10px">
-		<thead>
-			<tr>
-				<td>Date</td>
 				<td>Amount of Producer</td>
-				<td>Money Spent ($)</td>
+				<td>Money Spent</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -128,16 +105,36 @@
 				<tr>
 					<td>{{prod.Date_info}} </td>
 					<td>{{prod.num_prods}} </td>
-					<td>{{prod.sum}}</td>
+					<td>{{prod.sum}} $ </td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 </div>
 
-<div style="clear:both"> </div>
+<div style="float:left; width:35%">
+	<h2> By Date: How many vendors made order,and what is the total money got</h2>
+	<table cellspacing="10px">
+		<thead>
+			<tr>
+				<td>Date</td>
+				<td>Amount of Vendors</td>
+				<td>Money Obtained</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for ven in num_vendors %}
+				<tr>
+					<td>{{ven.Date_info}} </td>
+					<td>{{ven.num_vens}} </td>
+					<td>{{ven.sum}} $ </td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
 
-<div style="float:left; width:40%">
+<div style="float:left; width:35%">
 	<h2> show V_ID of vendors who has purchased all products</h2>
 	<table cellspacing="10px">
 		<thead>
@@ -155,22 +152,27 @@
 	</table>
 </div>
 
-<div style="float:right; width:40%">
-	<h2> show SKU of product exported to all vendors</h2>
-	<table cellspacing="10px">
-		<thead>
-			<tr>
-				<td>SKU</td>
-			</tr>
-		</thead>
-		<tbody>
-			{% for prod in export_to_all %}
-				<tr>
-					<td>{{prod.SKU}}</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-</div>
+
+
+
+<script type="text/javascript">
+	//not needed, can change
+    function analize(s_id){
+        fetch("http://35.182.249.219:5000/api/staffs/"+s_id)
+            .then((value) => value.json())
+            .then((valueJSON)=> {
+                let output = "Dependants: \n";
+
+                for (let data of valueJSON){	
+                    output+=  "StaffID: "+data["Staff_ID"]+"\n"+
+                              "SIN: "+data["dSin"]+"\n"+
+                              "dName: "+data["d_Name"] +"\n"+
+                              "birthdate: " +data["Birthdate"]+"\n";
+                }
+
+                confirm(output);
+            });
+    }
+</script>
 
 {% endblock body %}

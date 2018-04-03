@@ -96,6 +96,7 @@
 					{% endif %}
 				{% endfor %}
 				<td> 0 </td>
+
 				{% if user.Salary%}
 				<td><button onclick="modify({{vendor.V_ID}})"> Modify </button></td>
 				<td>
@@ -106,7 +107,9 @@
 				</td>
 				<td><button  onclick="showExports({{vendor.V_ID}})">Exports</button></td>
 
+				<td><button  onclick="analize({{vendor.V_ID}});">Exports</button></td>
 				{% endif %}
+
 				{% for export in list_order %}
 					{% if export.V_ID == vendor.V_ID %}
 					<tr > 
@@ -122,6 +125,20 @@
 		{% endfor %}
 	</tbody>
 </table>
+
+<script type="text/javascript">
+	function analize(v_id){
+		fetch("http://localhost:5000/api/vendors/"+v_id)
+			.then((value) => value.json())
+			.then((valueJSON)=> {
+				console.log(valueJSON);
+				let output = valueJSON[0]["COUNT(*)"] +" Export Order Was Made with this Vendor";
+				confirm(output);
+			});
+	}
+
+	document.getElementById("1").style.color = "yellow";
+</script>
 
 
 {% endblock body %}

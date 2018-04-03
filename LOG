@@ -17,6 +17,8 @@ projection query:
 selection query:
 	Products => click on product 
 
+DIVISION QUERY
+
 Join Query: 
 	Login.py
 
