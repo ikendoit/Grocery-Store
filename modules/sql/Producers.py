@@ -12,9 +12,8 @@ def query_producer():
 #   @params: none
 #   @return: list of P_ID, sum in decending order
 def query_max_producer():
-    return utilities.query("SELECT p.P_ID,SUM(p.Revenue) as sum "
-                           "FROM (SELECT SUM(Total_Price) AS Revenue, P_ID FROM Order_Imports GROUP BY P_ID) p GROUP BY P_ID "
-                           "ORDER BY SUM(Revenue) DESC")
+    query = "SELECT p.P_ID,SUM(p.Revenue) as sum FROM (SELECT SUM(Total_Price) AS Revenue, P_ID FROM Order_Imports GROUP BY P_ID) p GROUP BY P_ID ORDER BY SUM(Revenue) DESC"
+    return utilities.query(query)
 
 # print(query_max_producer());  ## -- unknown was executing on python -m flask run startup
 

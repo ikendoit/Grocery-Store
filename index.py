@@ -302,7 +302,7 @@ def mod_staff():
 def mod_profile():
     form = request.form
     try:
-        Manager.mod_profile(form)
+        Staff.mod_profile(form)
     except Exception as e:
         print(e)
     return redirect(url_for("profile"))

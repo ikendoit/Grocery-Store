@@ -1,16 +1,7 @@
-{% extends "base.html" -%}
+{% extends "base.html" %}
 
-<script>
-	function modUser(user){
-		swal('<form action="/modprofile" method="POST" >'+
-			 '<h2> Modify Product by SKU</h2>'+
-			 '<p>Name: <input type="text" name="user.Name" /></p>'+
-			 '<p>Address: <input type="text" name="user.Address" /></p>'+
-			 '<p>Phone: <input type="text" name="user.PhoneNum" /></p>'+
-			 '<input type="submit" value="Modify" />'+
-			 '</form>');
-	}
-</script>
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/products.css')}}" />
+
 
 
 {% block body %}
@@ -25,8 +16,20 @@
     <p> Date Start: {{user.Date_info_Start}}</p>
     <p> Is Manager : {{user.Salary != None }} </p>
     <p>
-		<a onclick="modUser({{user}})" style="cursor: pointer; margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Modify User Profile</a>
+		<a onclick="modUser('')" style="cursor: pointer; margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Modify User Profile</a>
+		<!-- <a onclick="modUser()" style="cursor: pointer; margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Modify User Profile</a> -->
 	</p>
 
 {% endblock body %}
 
+<script>
+	function modUser(id){
+		swal('<form action="/modprofile" method="POST" >'+
+			 '<h2> Modify Product by SKU</h2>'+
+			 '<p>Name: <input type="text" name="user.Name" /></p>'+
+			 '<p>Address: <input type="text" name="user.Address" /></p>'+
+			 '<p>Phone: <input type="text" name="user.PhoneNum" /></p>'+
+			 '<input type="submit" value="Modify" />'+
+			 '</form>');
+	}
+</script defer>

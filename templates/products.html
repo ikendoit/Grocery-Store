@@ -61,7 +61,7 @@
 			 '<h2> Quantify Product by SKU</h2>'+
 			 '<p>SKU: <input type="text" name="sku" /></p>'+
 			 '<p>Amount: <input type="text" name="amount" /></p>'+
-			 '<input type="submit" value="quantify" />'+
+			 '<input type="submit" style = "background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 32px;"  value="quantify" />'+
 			 '</form>');
 	}
 	
@@ -74,7 +74,7 @@
 			 '<p>Amount: <input type="text" name="amount" /></p>'+
 			 '<p>Section: <input type="text" name="section" /></p>'+
 			 '<p>Weight (g/item): <input type="text" name="weight" /></p>'+
-			 '<input type="submit" value="Modify" />'+
+			 '<input type="submit" style = "background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 32px;"  value="Modify" />'+
 			 '</form>');
 	}
 	function showExports(sku){
@@ -85,15 +85,15 @@
 				.then((valueJSON)=> {
 					let data = valueJSON[0];
 					let output = "Name: "+data["Product_Name"] +
-								"Price: "+data["Price"]+"$\n"+
-								"Section: "+data["Section_Num"]+ "\n"+
-								"Weight: "+data["Weight"]+" grams";
+								 "Price: "+data["Price"]+"$\n"+
+						 		 "Section: "+data["Section_Num"]+ "\n"+
+								 "Weight: "+data["Weight"]+" grams";
 
 					var span = document.createElement("span");
 					span.innerHTML = "Name: "+data["Product_Name"] +
-								"Price: "+data["Price"]+"$\n"+
-								"Section: "+data["Section_Num"]+ "\n"+
-								"Weight: "+data["Weight"]+" grams"
+								     "Price: "+data["Price"]+"$\n"+
+								     "Section: "+data["Section_Num"]+ "\n"+
+								     "Weight: "+data["Weight"]+" grams"
 
 					var hello = '<header> Products Info </header> <br> <span> Name: ' + data["Product_Name"] + '</span> <br> <span> Price: ' + data["Price"] + '</span> <br> <span> Section: ' + data["Section_Num"] + '</span> <br> <span> Weight: ' + data["Weight"] + ' grams';
 
@@ -110,7 +110,7 @@
 <p>
 	<a onclick="addNew()" style="cursor: pointer; margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Add New Product </a>
 	{% if user.Salary %}
-		<a style="cursor: pointer; margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Modify New Product </a>
+		<a onclick="modify('')" style="cursor: pointer; margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Modify New Product </a>
 	{% endif %}
 	<a onclick="quantify()" style="cursor: pointer; margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Quantify Product  </a>
 </p>

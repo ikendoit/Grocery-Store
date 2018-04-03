@@ -35,6 +35,7 @@ def query_props(req):
 #    @return convert( : list of dicts
 def query_all_products_info():
     query = "SELECT * from Products ORDER BY LENGTH(SKU)"
+    # query = "SELECT * from Products ORDER BY SKU"
     return utilities.query(query)
 
 

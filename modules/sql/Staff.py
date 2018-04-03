@@ -74,3 +74,17 @@ class Staff:
     def query_popular_producer(self):
         return utilities.query(
             "SELECT SKU, SUM(Amount) FROM Import_Desc GROUP BY SKU ORDER BY SUM(Amount)")
+
+    def mod_profile(self, form):
+        query = ""
+        for info in form:
+            if form[info] != "" :
+                if info == "Staff_ID":
+                    query = query + " Staff_ID ='" + form[info] + "' "
+                if info == "Name":
+                    query = query + " Name=" + form[info]
+                if info == "Address":
+                    query = query + " Address=" + form[info]
+                if info == "PhoneNum":
+                    query = query + " PhoneNum=" + form[info]
+        return utilities.execute("UPDATE Staff set " + query + " where Staff_ID=" + form["Staff_ID"])
