@@ -35,16 +35,11 @@
              '<p>Weight (g/item): <input type="text" name="weight" /></p>'+
              '<input type="submit" value="Modify" />'+
              '</form> ');
-
+    }
 </script>
-
-<h1> Administraion Management </h1>
 
 <p>
 	<a onclick="addNew()" style="margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Add New Staff </a>
-	{% if user.Salary %}
-	<a onclick="modify(0)" style="margin-left:20%;border: 2px solid blue; color:purple; padding:10px;"> Modify Staff </a>
-	{% endif %}
 </p>
 
 <table cellspacing="10px">
@@ -59,7 +54,7 @@
     </thead>
     <tbody>
         {% for staff in people %}
-            <tr onclick="analize({{staff.Staff_ID}});">
+            <tr>
                 <td>{{staff.Staff_ID}} </td>
                 <td>{{staff.Name}} </td>
                 <td>{{staff.Date_info_Start}} </td>
@@ -72,6 +67,7 @@
                         <input type="submit" style="background-color: red; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;" value="Delete"/> 
                     </form>
                 </td>
+                <td><buttononclick="analize({{staff.Staff_ID}});">Check Dependants</button></td>
             </tr>
         {% endfor %}
     </tbody>
