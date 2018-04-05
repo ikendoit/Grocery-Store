@@ -77,6 +77,7 @@ def query_delete_product(sku):
 
 def insert_modify(sku, staffid):
     now = datetime.datetime.now()
+    print(str(staffid)+" changed "+str(sku));
     utilities.execute("INSERT INTO Modify(SKU,Date_info, Staff_ID) values('"+str(sku)+"','"+str(now.year)+"/"+str(now.month)+"/"+str(now.day)+"','"+str(staffid)+"')")
 
 

@@ -268,6 +268,17 @@ def mod_product():
 
     return redirect(url_for("products")) 
 
+@app.route("/quanproduct", methods=["POST"])
+def quan_product():
+    form = request.form
+    try:
+        Products.insert_quantify(form["sku"], session["info"]["Staff_ID"])
+    except Exception as e:
+        print(e)
+
+    return redirect(url_for("products")) 
+
+
 
 @app.route("/modproducers", methods=["POST"])
 def mod_producer():

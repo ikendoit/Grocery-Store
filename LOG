@@ -18,6 +18,9 @@ selection query:
 	Products => click on product 
 
 DIVISION QUERY
+	Products => select Products that has been bought by all vendors 
+	or 
+	Products => select Vendors that has bought all products
 
 Join Query: 
 	Login.py

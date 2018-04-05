@@ -111,7 +111,7 @@
 
 
 
-<form style="min-width: 300px; float:left; background-color:lightgreen; padding:10px; padding-left: 3%; margin-left: 5%;">
+<div style="min-width: 300px; float:left; background-color:lightgreen; padding:10px; padding-left: 3%; margin-left: 5%;">
 	<h2> Select your Products </h2>
 	<span style="width: 50px;">SKU:</span> <input style="width: 70%;" type="text" id="sku" /><br>
 	<br>
@@ -122,7 +122,7 @@
 	<span>Weight (g/item):</span><input type="checkbox" id="weight"/>
     <p style="padding-left: 10%;"><button onclick="goProjection()" style="width:80%; height:50px"> Project Product </button> </p>
 
-</form>
+</div>
 <h2>
 	<div id="projection" style="float:left;"></div>
 </h2>
@@ -164,35 +164,19 @@
             });
     }
 
+	/*
+		function addNew(){
+			swal('<form action="/addproduct" method="POST"><h2> Add new Product </h2><p>SKU: <input type="text" name="sku" /></p><p>Name: <input type="text" name="name" /></p><p>Price: <input type="text" name="price" /></p><p>Amount: <input type="text" name="amount" /></p><p>section: <input type="text" name="section" /></p><p>weight (g/item): <input type="text" name="weight" /></p><input type="submit" value="Add new Value" /></form>');
+		}
+		function quantify(){
+			swal('<form action="/quanproduct" method="POST"><h2> Quantify Product by SKU</h2><p>SKU: <input type="text" name="sku" /></p><p>Amount: <input type="text" name="amount" /></p><input type="submit" value="quantify" /> </form> ');
+		}
+		function modify(sku){
+			swal('<form action="/modproduct" method="POST" ><h2> Modify Product by SKU</h2><p>SKU: <input type="text" name="sku" value="'+sku+'"/></p><p>Name: <input type="text" name="name" /></p><p>Price: <input type="text" name="price" /></p><p>Amount: <input type="text" name="amount" /></p><p>section: <input type="text" name="section" /></p><p>weight (g/item): <input type="text" name="weight" /></p><input type="submit" value="Modify" /></form> ');
+		}
+	*/
 </script defer>
 
 {% endblock %}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-	function addNew(){
-		swal('<form action="/addproduct" method="POST"><h2> Add new Product </h2><p>SKU: <input type="text" name="sku" /></p><p>Name: <input type="text" name="name" /></p><p>Price: <input type="text" name="price" /></p><p>Amount: <input type="text" name="amount" /></p><p>section: <input type="text" name="section" /></p><p>weight (g/item): <input type="text" name="weight" /></p><input type="submit" value="Add new Value" /></form>');
-	}
-	function quantify(){
-		swal('<form action="/quanproduct" method="POST"><h2> Quantify Product by SKU</h2><p>SKU: <input type="text" name="sku" /></p><p>Amount: <input type="text" name="amount" /></p><input type="submit" value="quantify" /> </form> ');
-	}
-	function modify(sku){
-		swal('<form action="/modproduct" method="POST" ><h2> Modify Product by SKU</h2><p>SKU: <input type="text" name="sku" value="'+sku+'"/></p><p>Name: <input type="text" name="name" /></p><p>Price: <input type="text" name="price" /></p><p>Amount: <input type="text" name="amount" /></p><p>section: <input type="text" name="section" /></p><p>weight (g/item): <input type="text" name="weight" /></p><input type="submit" value="Modify" /></form> ');
-	}
-*/
-	
