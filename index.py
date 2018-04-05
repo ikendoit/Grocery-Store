@@ -268,17 +268,6 @@ def mod_product():
 
     return redirect(url_for("products")) 
 
-@app.route("/quanproduct", methods=["POST"])
-def quan_product():
-    form = request.form
-    try:
-        Products.insert_quantify(form["sku"], session["info"]["Staff_ID"])
-    except Exception as e:
-        print(e)
-
-    return redirect(url_for("products")) 
-
-
 
 @app.route("/modproducers", methods=["POST"])
 def mod_producer():
@@ -302,16 +291,35 @@ def mod_vendor():
     return redirect(url_for("vendors")) 
 
 
-@app.route("/modstaff", methods=["POST", "GET"])
+@app.route("/modstaff", methods=["POST"])
 def mod_staff():
     form = request.form
     try: 
-        manager.mod_staff(form)
-        print("completed")
+        manager.mod_manager(form)
     except Exception as e:
         print(e)
 
     return redirect(url_for("admin")) 
+
+@app.route("/modmanagers", methods=["POST"])
+def mod_managers():
+    form = request.form
+    try:
+        manager.mod_managers(form)
+    except Exception as e:
+        print(e)
+
+    return redirect(url_for("managers"))
+
+@app.route("/modworkers", methods=['POST'])
+def mod_workers():
+    form = request.form
+    try:
+        manager.mod_workers(form)
+    except Exception as e:
+        print(e)
+
+    return redirect(url_for("workers"))
 
 @app.route("/modprofile", methods=["POST"])
 def mod_profile():

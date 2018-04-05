@@ -15,22 +15,22 @@
     function addNew(){
         swal('<form action="/addstaff" method="POST" >'+
              '<h2> Add new Worker </h2>'+
-             '<p>Name: <input type= "text" name="name" /></p>'+
-             '<p>SIN: <input type="text" name="sin" /></p>'+
-             '<p>Address: <input type="text" name="address" /></p>'+
-             '<p>BirthDate: <input type="text" name="birthdate" /></p>'+
-             '<p>Phone: <input type="text" name="phone" /></p>'+
-             '<p>Email: <input type="text" name="email" /></p>'+
-             '<p>Bank Info: <input type="text" name="bank" /></p>'+
+             '<span>Name:</span><input type= "text" name="name" /></p>'+
+             '<span>SIN:</span><input type="text" name="sin" /></p>'+
+             '<span>Address:</span><input type="text" name="address" /></p>'+
+             '<span>BirthDate:</span><input type="text" name="birthdate" /></p>'+
+             '<span>Phone:</span><input type="text" name="phone" /></p>'+
+             '<span>Email:</span><input type="text" name="email" /></p>'+
+             '<span>Bank Info:</span><input type="text" name="bank" /></p>'+
              '<input type="submit" style = "background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 32px;" value="Add new Worker" />'+
              '</form> ');
     }
 
     function modify(id){
         swal('<form action="/modstaff" method="POST">'+
-             '<h2> Modify Staff</h2>'+
-             '<span>SKU:</span> <input type="text" name="staff_id" value="'+id+'" /><br><br>'+
-             '<span>Name:</span> </span><input type="text" name="name" /><br><br>'+
+             '<h2> Modify</h2>'+
+             '<span>SKU:</span><input type="text" name="staff_id" value="'+id+'" /><br><br>'+
+             '<span>Name:</span><input type="text" name="name" /><br><br>'+
              '<span>SIN:</span><input type="text" name="SIN" /><br><br>'+
              '<span>Address:</span><input type="text" name="address" /><br><br>'+
              '<span>Birthdate:</span><input type="text" name="birthdate" /><br><br>'+
@@ -50,7 +50,7 @@
 <table cellspacing="10px">
     <thead>
         <tr>
-            <td>Staff ID </td>
+            <td>Staff ID</td>
             <td>Name</td>
             <td>SIN</td>
             <td>Address</td>
@@ -82,20 +82,16 @@
             </tr>
             {% for mod in modify %}
                 {% if mod.Staff_ID==staff.Staff_ID %}
-                <tr> 
-                    <td colspan=8>
-                        <b>Modify </b>Date: {{mod.Date_info}} SKU: {{mod.SKU}}
-                    </td>
-                </tr> 
+                <td colspan=4>
+                    <b>Modify </b>Date: {{mod.Date_info}} SKU: {{mod.SKU}}
+                </td>
                 {% endif %}
             {% endfor %}
             {% for quan in quantify %}
                 {% if quan.Staff_ID==staff.Staff_ID %}
-                <tr> 
-                    <td colspan=8>
-                        <b>Quantify</b>  SKU: {{quan.SKU}} Date:{{quan.Date_info}}
-                    </td>
-                </tr> 
+                <td colspan=4>
+                    <b>Quantify</b>  SKU: {{quan.SKU}} Date:{{quan.Date_info}}
+                </td>
                 {% endif %}
             {% endfor %}
 
@@ -112,7 +108,7 @@
                 let output = "Dependants: \n\n";
 
                 for (let data of valueJSON){	
-                    output+=  "Staff_ID: "+data["Staff_ID"]+"\n\n"+
+                    output+=  "Staff ID: "+data["Staff_ID"]+"\n\n"+
                               "SIN: "+data["dSin"]+"\n\n"+
                               "Name: "+data["d_Name"] +"\n\n"+
                               "Birthdate: " +data["Birthdate"]+"\n";

@@ -138,6 +138,30 @@ class Manager(Staff):
 
         return utilities.execute("UPDATE Producers set " + query + " where P_ID=" + form["id"])
 
+    def mod_workers(self, form):
+        query = ""
+        for info in form:
+            if form[info] != "":
+                if info == "hourly_rate":
+                    query += " Hourly_Rate='" + form[info] + "' "
+                if info == "role":
+                    query += " Role='" + form[info] + "' "
+                if info == "mentor":
+                    query += " Mentor_ID='" + form[info] + "' "
+
+        return utilities.execute("UPDATE Workers SET " + query + " WHERE Staff_ID = " + form["staff_ID"])
+
+    def mod_managers(self, form):
+        query = ""
+        for info in form:
+            if form[info] != "":
+                if info == "salary":
+                    query += " Salary='" + form[info] + "' "
+                if info == "date_start":
+                    query += " Date_info_Start_Manager='" + form[info] + "' "
+
+        return utilities.execute("UPDATE Manager SET " + query + "WHERE Staff_ID=" + form["staff_ID"])
+
     # modify staff
     #   @param:  id_party
     #   @return: none
@@ -162,7 +186,7 @@ class Manager(Staff):
                 if info == "date_start":
                     query = query + " Date_info_Start='" + form[info] + "' "
 
-        return utilities.execute("UPDATE Staff SET " + query + " WHERE Staff_ID = " + form["id"])
+        return utilities.execute("UPDATE Staff SET " + query + " WHERE Staff_ID = " + form["staff_id"])
 
     # modify a vendor
     #   @param:  id_party

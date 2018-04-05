@@ -2,8 +2,16 @@ form span{
 
     display:inline-block;
     width: 200px;
+    margin-bottom: 10px;
 
 }
+
+#name, #address{
+
+    width: 105px;
+
+}
+
 
 td button{
 

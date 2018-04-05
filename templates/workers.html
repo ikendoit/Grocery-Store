@@ -1,28 +1,46 @@
 {% extends "base.html" -%}
 {% block body %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/workers.css')}}" />
+
 {% if user.Salary == None %}
     <script> document.location.href="/" </script>
 {% endif %}
 
-<h1 style="text-align:center"> Staffs Administration </h1>
+<h1 style="text-align:center"> Workers </h1>
 
 <h1> {{message}} </h1>
 
 <script>
 
     function addNew(){
-        swal('<form action="/addstaff" method="POST" ><h2> Add new Worker </h2><p>Name: <input type="text" name="name" /></p><p>SIN: <input type="text" name="sin" /></p><p>Address: <input type="text" name="address" /></p><p>BirthDate: <input type="text" name="birthdate" /></p><p>Phone: <input type="text" name="phone" /></p><p>Email: <input type="text" name="email" /></p><p>Bank Info: <input type="text" name="bank" /></p><input type="submit" value="Add new Worker" /></form> ');
+        swal('<form action="/addstaff" method="POST" >' +
+        '<h2> Add new Worker </h2>' +
+        '<span>Name:</span><input type="text" name="name" /><br><br>' +
+        '<span>SIN:</span><input type="text" name="sin" /><br><br>' +
+        '<span>Address:</span><input type="text" name="address" /><br><br>' +
+        '<span>BirthDate:</span><input type="text" name="birthdate" /><br><br>' +
+        '<span>Phone:</span><input type="text" name="phone" /><br><br>' +
+        '<span>Email:</span><input type="text" name="email" /><br><br>' +
+        '<span>Bank Info:</span><input type="text" name="bank" /><br><br>' +
+        '<input type="submit" style = "background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 32px;" value="Add new Worker" /><br><br>' +
+        '</form> ');
     }
 
     function modify(id){
-        swal('<form action="/modstaff" method="POST"><h2> Modify Staff</h2><p>SKU: <input type="text" name="staff_id" value="'+id+'" /></p><p>Name: <input type="text" name="name" /></p><p>Price: <input type="text" name="price" /></p><p>Amount: <input type="text" name="amount" /></p><p>section: <input type="text" name="section" /></p><p>weight (g/item): <input type="text" name="weight" /></p><input type="submit" value="Modify" /></form> ');
+        swal('<form action="/modworkers" method="POST">' +
+        '<h2>Modify</h2>' +
+        '<span>Staff ID:</span><input type="text" name="staff_ID" value="'+id+'" /><br><br>' +
+        '<span>Hourly Rate:</span><input type="text" name="hourly_rate" /><br><br>' +
+        '<span>Role:</span><input type="text" name="role" /><br><br>' +
+        '<span>Mentor ID:</span><input type="text" name="mentor" /><br><br>' +
+        '<input type="submit" style = "background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 32px;" value="Modify" /><br><br>' +
+        '</form> ');
     }
+
 </script>
 
-<h1> Administraion Management </h1>
-
-<p>
-	<a onclick="addNew()" style="margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Add New Staff </a>
+<p style="width: 100%">
+	<div onclick="addNew()" style="cursor: pointer; display:inline-block; margin-left:45.5%;border: 2px solid blue; color:purple; padding:10px;"> Add New Staff </div>
 </p>
 
 <table cellspacing="10px">
@@ -52,7 +70,7 @@
                         <input type="submit" style="background-color: red; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;" value="Delete"/> 
                     </form>
                 </td>
-                <td><button onclick="analize({{staff.Staff_ID}});">Check Dependants</button></td>
+                <td><button style = "background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;" onclick="analize({{staff.Staff_ID}});">Check Dependants</button></td>
             </tr>
         {% endfor %}
     </tbody>
@@ -63,16 +81,16 @@
         fetch("http://35.182.249.219:5000/api/staffs/"+s_id)
             .then((value) => value.json())
             .then((valueJSON)=> {
-                let output = "Dependants: \n";
+                let output = "Dependants: \n\n";
 
                 for (let data of valueJSON){	
-                    output+=  "StaffID: "+data["Staff_ID"]+"\n"+
-                              "SIN: "+data["dSin"]+"\n"+
-                              "dName: "+data["d_Name"] +"\n"+
-                              "birthdate: " +data["Birthdate"]+"\n";
+                    output+=  "Staff ID: "+data["Staff_ID"]+"\n\n"+
+                              "SIN: "+data["dSin"]+"\n\n"+
+                              "Name: "+data["d_Name"] +"\n\n"+
+                              "Birthdate: " +data["Birthdate"];
                 }
 
-                confirm(output);
+                swal(output);
             });
     }
 </script>

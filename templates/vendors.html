@@ -22,7 +22,7 @@
     function modify(id){
         swal('<form action="/modvendors" method="POST" >'+
         	 '<h3> Modify Vendor by ID</h3>'+
-        	 '<span> ID: </span><input type="text" name="id" /><br>'+
+        	 '<span> ID: </span><input type="text" name="id" value="'+id+'" /><br>'+
         	 '<span> Name: </span><input type="text" name="name" /><br>'+
         	 '<span> Email: </span><input type="text" name="email" /><br>'+
         	 '<span> Phone: </span><input type="text" name="phone" /><br>'+

@@ -1,10 +1,12 @@
 {% extends "base.html" -%}
 {% block body %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/managers.css')}}" />
+
 {% if user.Salary == None %}
     <script> document.location.href="/" </script>
 {% endif %}
 
-<h1 style="text-align:center; padding-bottom: 30px;"> Managers </h1>
+<h1 style="text-align:center;"> Managers </h1>
 
 <h1> {{message}} </h1>
 
@@ -13,33 +15,30 @@
     function addNew(){
         swal('<form action="/addstaff" method="POST" >'+
              '<h2> Add new Worker </h2>'+
-             '<span>Name: <input type="text" name="name" /></p>'+
-             '<span>SIN: <input type="text" name="sin" /></p>'+
-             '<span>Address: <input type="text" name="address" /></p>'+
-             '<span>BirthDate: <input type="text" name="birthdate" /></p>'+
-             '<span>Phone: <input type="text" name="phone" /></p>'+
-             '<span>Email: <input type="text" name="email" /></p>'+
-             '<span>Bank Info: <input type="text" name="bank" /></p>'+
-             '<input type="submit" value="Add new Worker" />'+
+             '<span>Name:</span><input type="text" name="name" /><br><br>'+
+             '<span>SIN:</span><input type="text" name="sin" /><br><br>'+
+             '<span>Address:</span><input type="text" name="address" /><br><br>'+
+             '<span>BirthDate:</span><input type="text" name="birthdate" /><br><br>'+
+             '<span>Phone:</span><input type="text" name="phone" /><br><br>'+
+             '<span>Email:</span><input type="text" name="email" /><br><br>'+
+             '<span>Bank Info:</span><input type="text" name="bank" /><br><br>'+
+             '<input type="submit" style = "background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 32px;" value="Add new Worker" />'+
              '</form> ');
     }
 
     function modify(id){
-        swal('<form action="/modstaff" method="POST">'+
-             '<h2> Modify Staff</h2>'+
-             '<span>SKU: <input type="text" name="staff_id" value="'+id+'" /></p>'+
-             '<span>Name: <input type="text" name="name" /></p>'+
-             '<span>Price: <input type="text" name="price" /></p>'+
-             '<span>Amount: <input type="text" name="amount" /></p>'+
-             '<span>Section: <input type="text" name="section" /></p>'+
-             '<span>Weight (g/item): <input type="text" name="weight" /></p>'+
-             '<input type="submit" value="Modify" />'+
+        swal('<form action="/modmanagers" method="POST">'+
+             '<h2> Modify</h2>'+
+             '<span>Staff ID:</span><input type="text" name="staff_ID" value="'+id+'" /><br><br>'+
+             '<span>Salary:</span><input type="text" name="salary" /><br><br>'+
+             '<span>Date Start:</span><input type="text" name="date_start" /><br><br>'+
+             '<input type="submit" style = "background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 32px;" value="Modify" />'+
              '</form> ');
     }
 </script>
 
 <p style="width: 100%; padding-bottom: 30px;">
-	<a onclick="addNew()" style="margin-left:43%;border: 2px solid blue; color:purple; padding:10px;"> Add New Staff </a>
+	<div onclick="addNew()" style="cursor: pointer; display:inline-block; margin-left:45%;border: 2px solid blue; color:purple; padding:10px;"> Add New Staff </div>
 </p>
 
 <table cellspacing="10px">
@@ -60,14 +59,14 @@
                 <td>{{staff.Date_info_Start}} </td>
                 <td>{{staff.Date_info_Start_Manager}} </td>
                 <td>{{staff.Salary}} </td>
-                <td><button style = "background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;" onclick="modify({{staff.Staff_ID}})"> Modify </button></td>
+                <td><button style = "background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;" onclick="modify({{staff.Staff_ID}})"> Modify</button></td>
                 <td>
                     <form method="POST" action="/delstaff">
                         <input type="text" name="id" value={{staff.Staff_ID}} style="display:none"/>
                         <input type="submit" style="background-color: red; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;" value="Delete"/> 
                     </form>
                 </td>
-                <td><buttononclick="analize({{staff.Staff_ID}});">Check Dependants</button></td>
+                <td><button style = "background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;" onclick="analize({{staff.Staff_ID}});">Check Dependants</button></td>
             </tr>
         {% endfor %}
     </tbody>
@@ -78,16 +77,16 @@
         fetch("http://35.182.249.219:5000/api/staffs/"+s_id)
             .then((value) => value.json())
             .then((valueJSON)=> {
-                let output = "Dependants: \n";
+                let output = "Dependants: \n\n";
 
                 for (let data of valueJSON){	
-                    output+=  "StaffID: "+data["Staff_ID"]+"\n"+
-                              "SIN: "+data["dSin"]+"\n"+
-                              "dName: "+data["d_Name"] +"\n"+
-                              "birthdate: " +data["Birthdate"]+"\n";
+                    output+=  "Staff ID: "+data["Staff_ID"]+"\n\n"+
+                              "SIN: "+data["dSin"]+"\n\n"+
+                              "Name: "+data["d_Name"] +"\n\n"+
+                              "Birthdate: " +data["Birthdate"]+"\n\n";
                 }
 
-                confirm(output);
+                swal(output);
             });
     }
 </script>

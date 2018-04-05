@@ -26,6 +26,14 @@
       	cursor: pointer;
     }
 
+    li:hover #form-logout input{
+
+        width: 100%;
+        background-color: #00BFFF;
+        cursor: pointer;
+
+    }
+
 	ul {
 	}
 
@@ -117,10 +125,6 @@
 		width:17%;
     }
 
-    #form-logout input:hover{
-        color: 1e90ff;
-    }
-
 	#form-logout input{
 		font-size:1.5rem;
 		padding:0 !important;
@@ -174,13 +178,6 @@
         background-color:#87ceeb;
         border: none;
         cursor: pointer;
-    }
-
-    form input[name="logout"]: hover .logout-button[name="logout"]{
-
-        background-color : #00BFFF;
-        color: #00BFFF;
-
     }
 
     body > div.swal2-container.swal2-center.swal2-fade.swal2-shown > div > div.swal2-actions > button.swal2-confirm.swal2-styled {
