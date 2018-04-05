@@ -1,34 +1,22 @@
 {% extends "base.html" %}
 {% block body %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/producers.css')}}" />
 
-<h1 style="text-align:center"> Producers Manager </h1>
+<h1 style="text-align:center"> Producers Management </h1>
 
 <h1> {{message}} </h1>
-
-<style>
-	button {
-		background-color: #4CAF50; /* Green */
-		border: none;
-		color: white;
-		padding: 15px 32px;
-		text-align: center;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 16px;
-	}
-</style>
 
 <script>
 	function addNew(){
 		swal('<form action="/addproducers" method="POST"'+
-			 '<h3> Add New Producer </h3><br/>'+
+			 '<h3> Add New Producer </h3><br><br>'+
 			 '<span> Name: </span><input type="text" name="name"><br>'+
 			 '<span> Email: </span><input type="text" name="email" /><br>'+
 			 '<span> Phone: </span><input type="text" name="phone" /><br>'+
 			 '<span> Address: </span><input type="text" name="address" /><br>'+
 			 '<span> Owner Name: </span><input type="text" name="owner_name" /><br>'+
 			 '<br>'+
-			 '<input type="submit" style = "background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 20px;" value="Add New" />'+
+			 '<input type="submit" style = "background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 32px;" value="Add New" />'+
 			 '</form> ');
 
 	}
@@ -41,8 +29,8 @@
 			 '<span> Email: </span><input type="text" name="email" /><br>'+
 			 '<span> Phone: </span><input type="text" name="phone" /><br>'+
 			 '<span> Address: </span><input type="text" name="address" /><br>'+
-			 '<span> Owner Name: </span><input type="text" name="owner_name" /><br>'+
-			 '<input type="submit" style = "background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 20px;" value="Add New" />'+
+			 '<span> Owner Name: </span><input type="text" name="owner_name" /><br><br>'+
+			 '<input type="submit" style = "background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 32px;" value="Add New" />'+
 			 '</form> ');
 	}
 
@@ -65,7 +53,7 @@
 
 <h2 style="text-align:center; padding-bottom: 30px;"> List of Producers </h2>
 <p>
-	<a onclick="addNew()" style="margin-left:43%;border: 2px solid blue; color:purple; padding:10px; cursor: pointer;"> Add New Producer </a>
+	<div onclick="addNew()" style="margin-left:44%; display:inline-block; border: 2px solid blue; color:purple; padding:10px; cursor: pointer;"> Add New Producer </div>
 </p>
 <table cellspacing="20px" style="text-align:center">
 	<thead>
@@ -91,12 +79,10 @@
 				{% for ministat in stat %}
 					{% if ministat.P_ID == producer.P_ID %}
 						<td> {{ministat.sum}}</td>
-					{% else %}
-						<!-- <td></td> --> <!-- Commented out because it was causing the producers to order themselves weirdly-->
 					{% endif %}
 				{% endfor %}
 				{% if user.Salary%}
-					<td><button onclick="modify({{producer.P_ID}})"> Modify </button></td>
+					<td><button onclick="modify({{ producer.P_ID }})"> Modify </button></td>
 					<td>
 						<form method="POST" action="/delproducer">
 							<input type="text" name="p_id" value={{producer.P_ID}} style="display:none"/>

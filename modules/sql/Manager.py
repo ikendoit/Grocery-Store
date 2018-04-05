@@ -138,6 +138,32 @@ class Manager(Staff):
 
         return utilities.execute("UPDATE Producers set " + query + " where P_ID=" + form["id"])
 
+    # modify staff
+    #   @param:  id_party
+    #   @return: none
+    def mod_staff(self, form):
+        query = ""
+        for info in form:
+            if form[info] != "":
+                if info == "name":
+                    query = query + " Name='" + form[info] + "' "
+                if info == "SIN":
+                    query = query + " sSin='" + form[info] + "' "
+                if info == "address":
+                    query = query + " Address='" + form[info] + "' "
+                if info == "birthdate":
+                    query = query + " Birthdate='" + form[info] + "' "
+                if info == "phone_num":
+                    query = query + " PhoneNum='" + form[info] + "' "
+                if info == "email":
+                    query = query + " Email='" + form[info] + "' "
+                if info == "bank_info":
+                    query = query + " Bank_Info='" + form[info] + "' "
+                if info == "date_start":
+                    query = query + " Date_info_Start='" + form[info] + "' "
+
+        return utilities.execute("UPDATE Staff SET " + query + " WHERE Staff_ID = " + form["id"])
+
     # modify a vendor
     #   @param:  id_party
     #   @return: none

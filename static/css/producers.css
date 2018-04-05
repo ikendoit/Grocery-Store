@@ -1,7 +1,7 @@
 form span{
 
     display:inline-block;
-    width: 100px;
+    width: 200px;
     margin-bottom: 10px;
 
 }
@@ -28,4 +28,35 @@ td form input{
 
     width: 100%;
 
+}
+
+input[type='checkbox'] {
+        width:30px;
+        height:30px;
+        background:white;
+        border-radius:5px;
+        border:2px solid #555;
+    }
+
+input[type='checkbox']:checked {
+    background: #abd;
+}
+
+input[type='text'] {
+    /*	width:30px;*/
+    height:30px;
+    background:white;
+    border-radius:5px;
+    border:2px solid #555;
+}
+
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }

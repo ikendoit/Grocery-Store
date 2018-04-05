@@ -152,10 +152,10 @@ def statistics():
                            user=(session["info"] if "info" in session else None),
                            producers=producers,
                            vendors=vendors,
-                           prod_producers = prod_producers,
-                           prod_vendors = prod_vendors,
-                           num_producers = num_producers,
-                           num_vendors = num_vendors,
+                           prod_producers=prod_producers,
+                           prod_vendors=prod_vendors,
+                           num_producers=num_producers,
+                           num_vendors=num_vendors,
                            bought_all=bought_all,
                            export_to_all=export_to_all)
 
@@ -191,7 +191,7 @@ def add_vendors():
 def add_producers():
     form = request.form
     try:
-        result= Producers.insert_producer(form["email"], form["name"], form["phone"], form["owner_name"], form["address"], )
+        result= Producers.insert_producer(form["email"], form["name"], form["phone"], form["owner_name"], form["address"] )
     except Exception as e:
         print(e)
 
@@ -291,12 +291,13 @@ def mod_vendor():
     return redirect(url_for("vendors")) 
 
 
-@app.route("/modstaff", methods=["POST"])
+@app.route("/modstaff", methods=["POST", "GET"])
 def mod_staff():
     form = request.form
     try: 
-        Manager.mod_staff(form)
-    except Exception as e : 
+        manager.mod_staff(form)
+        print("completed")
+    except Exception as e:
         print(e)
 
     return redirect(url_for("admin")) 

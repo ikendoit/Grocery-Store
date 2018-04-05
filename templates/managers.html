@@ -4,7 +4,7 @@
     <script> document.location.href="/" </script>
 {% endif %}
 
-<h1 style="text-align:center"> Managers Administration </h1>
+<h1 style="text-align:center; padding-bottom: 30px;"> Managers </h1>
 
 <h1> {{message}} </h1>
 
@@ -13,13 +13,13 @@
     function addNew(){
         swal('<form action="/addstaff" method="POST" >'+
              '<h2> Add new Worker </h2>'+
-             '<p>Name: <input type="text" name="name" /></p>'+
-             '<p>SIN: <input type="text" name="sin" /></p>'+
-             '<p>Address: <input type="text" name="address" /></p>'+
-             '<p>BirthDate: <input type="text" name="birthdate" /></p>'+
-             '<p>Phone: <input type="text" name="phone" /></p>'+
-             '<p>Email: <input type="text" name="email" /></p>'+
-             '<p>Bank Info: <input type="text" name="bank" /></p>'+
+             '<span>Name: <input type="text" name="name" /></p>'+
+             '<span>SIN: <input type="text" name="sin" /></p>'+
+             '<span>Address: <input type="text" name="address" /></p>'+
+             '<span>BirthDate: <input type="text" name="birthdate" /></p>'+
+             '<span>Phone: <input type="text" name="phone" /></p>'+
+             '<span>Email: <input type="text" name="email" /></p>'+
+             '<span>Bank Info: <input type="text" name="bank" /></p>'+
              '<input type="submit" value="Add new Worker" />'+
              '</form> ');
     }
@@ -27,19 +27,19 @@
     function modify(id){
         swal('<form action="/modstaff" method="POST">'+
              '<h2> Modify Staff</h2>'+
-             '<p>SKU: <input type="text" name="staff_id" value="'+id+'" /></p>'+
-             '<p>Name: <input type="text" name="name" /></p>'+
-             '<p>Price: <input type="text" name="price" /></p>'+
-             '<p>Amount: <input type="text" name="amount" /></p>'+
-             '<p>Section: <input type="text" name="section" /></p>'+
-             '<p>Weight (g/item): <input type="text" name="weight" /></p>'+
+             '<span>SKU: <input type="text" name="staff_id" value="'+id+'" /></p>'+
+             '<span>Name: <input type="text" name="name" /></p>'+
+             '<span>Price: <input type="text" name="price" /></p>'+
+             '<span>Amount: <input type="text" name="amount" /></p>'+
+             '<span>Section: <input type="text" name="section" /></p>'+
+             '<span>Weight (g/item): <input type="text" name="weight" /></p>'+
              '<input type="submit" value="Modify" />'+
              '</form> ');
     }
 </script>
 
-<p>
-	<a onclick="addNew()" style="margin-left:15%;border: 2px solid blue; color:purple; padding:10px;"> Add New Staff </a>
+<p style="width: 100%; padding-bottom: 30px;">
+	<a onclick="addNew()" style="margin-left:43%;border: 2px solid blue; color:purple; padding:10px;"> Add New Staff </a>
 </p>
 
 <table cellspacing="10px">
